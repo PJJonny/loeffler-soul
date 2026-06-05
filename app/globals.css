@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   LOEFFLER SOUL — Designtokens
+   Naturtöne: warmes Beige, Creme, Cognac, tiefes Braun
+   ============================================================ */
+:root {
+  /* Farben als RGB-Kanäle (Leerzeichen-getrennt), damit Tailwind
+     Transparenz-Modifier wie text-ink/70 oder bg-cognac/10 funktionieren. */
+  --cream: 243 238 229;     /* Seitenhintergrund, gebrochenes Weiß */
+  --paper: 250 246 238;     /* hellere Flächen / Karten */
+  --sand: 231 221 205;      /* warmes Beige für Akzentflächen */
+  --ink: 33 28 23;          /* tiefes Braun-Schwarz, Fließtext */
+  --espresso: 42 34 27;     /* dunkle Sektionen / Footer */
+  --cognac: 138 90 55;      /* Akzent */
+  --cognac-deep: 109 69 39; /* Akzent dunkel */
+  --stone: 120 109 95;      /* gedämpfter Text */
+  --line: rgba(33, 28, 23, 0.14); /* Haarlinien (fester Wert, ohne Modifier) */
+}
+
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: rgb(var(--cream));
+  color: rgb(var(--ink));
+  font-feature-settings: "kern", "liga", "calt";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(var(--cognac));
+  color: rgb(var(--paper));
+}
+
+/* Display-Headlines: optische Größe fest auf einen ruhigen, gleichmäßigen
+   Schnitt pinnen (statt automatisch in den dramatischen Display-Schnitt zu
+   springen). Das hält die Buchstaben gerade und gleichmäßig. */
+.font-display {
+  font-optical-sizing: none;
+  font-variation-settings: "opsz" 30;
+  font-feature-settings: "kern", "liga";
+}
+
+/* Feiner Fokusring für Tastaturnutzung (Accessibility) */
+:focus-visible {
+  outline: 2px solid rgb(var(--cognac));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip-Link */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  background: rgb(var(--espresso));
+  color: rgb(var(--paper));
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ============================================================
+   Reveal-on-scroll — dezent, ruhig
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Sehr langsamer, ruhiger Bild-Zoom beim Hover */
+.img-zoom {
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .img-zoom {
+  transform: scale(1.035);
+}
+
+/* Animierter Unterstrich für Links */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  padding-bottom: 2px;
+}
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* Respektiere reduzierte Bewegung */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .img-zoom,
+  .group:hover .img-zoom {
+    transition: none;
+    transform: none;
+  }
+}
