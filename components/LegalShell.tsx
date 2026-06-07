@@ -25,7 +25,7 @@ export default function LegalShell({
         </div>
       </header>
 
-      <main className="bg-cream">
+      <main id="hauptinhalt" className="bg-cream">
         <div className="mx-auto max-w-3xl px-5 py-20 sm:px-8 lg:py-28">
           <h1 className="font-display text-3xl font-normal text-ink sm:text-4xl">
             {title}

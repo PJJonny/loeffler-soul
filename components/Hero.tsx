@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Reveal from "./Reveal";
 
@@ -54,26 +56,38 @@ export default function Hero() {
           </Reveal>
         </div>
 
-        {/* Hauptvisual */}
+        {/* Hauptvisual – klickbar: öffnet die Bilder der Sling Standard */}
         <Reveal delay={200} className="order-1 lg:order-2">
-          <figure className="group relative aspect-[3/4] w-full overflow-hidden bg-sand">
-            {/*
-              HERO-BILD
-              Ersetze /public/hero.jpg durch dein eigenes Bild (Hochformat 3:4).
-              Empfehlung: das Lifestyle-Foto, auf dem die Tasche getragen wird.
-            */}
-            <Image
-              src="/hero.jpg"
-              alt="Handgefertigte LOEFFLER SOUL Sling aus Vollnarbenleder, am Körper getragen"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="img-zoom object-cover"
-            />
-            <figcaption className="absolute bottom-4 left-4 rounded-full bg-cream/80 px-4 py-1.5 text-[0.62rem] uppercase tracking-eyebrow text-ink backdrop-blur-sm">
-              No. 01 — Die Sling · Standard
-            </figcaption>
-          </figure>
+          <button
+            type="button"
+            onClick={() =>
+              window.dispatchEvent(
+                new CustomEvent("loeffler:open-gallery", {
+                  detail: { size: "Standard", index: 0 },
+                })
+              )
+            }
+            className="group block w-full cursor-zoom-in text-left"
+            aria-label="Bilder der Sling Standard ansehen"
+          >
+            <figure className="relative aspect-[3/4] w-full overflow-hidden bg-sand">
+              {/* HERO-BILD: /public/hero.jpg (Hochformat 3:4) */}
+              <Image
+                src="/hero.jpg"
+                alt="Handgefertigte LOEFFLER SOUL Sling aus Vollnarbenleder, am Körper getragen"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="img-zoom object-cover"
+              />
+              <figcaption className="absolute bottom-4 left-4 rounded-full bg-cream/80 px-4 py-1.5 text-[0.62rem] uppercase tracking-eyebrow text-ink backdrop-blur-sm">
+                No. 01 — Die Sling · Standard
+              </figcaption>
+              <span className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-ink/70 px-3 py-1.5 text-[0.6rem] uppercase tracking-eyebrow text-cream opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                Bilder ansehen
+              </span>
+            </figure>
+          </button>
         </Reveal>
       </div>
     </section>

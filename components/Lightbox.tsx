@@ -1,32 +1,38 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 export type GalleryImage = { src: string; alt: string; label: string };
 
 /**
- * Schlichter, abhängigkeitsfreier Bild-Viewer (Lightbox).
- * Wiederverwendbar für jede Kollektion: einfach eine Liste von Bildern + Index übergeben.
- * Tastatur: ← / → blättern, Esc schließt. Klick auf den Hintergrund schließt ebenfalls.
+ * Robuster, abhängigkeitsfreier Bild-Viewer (Lightbox).
+ * - Rendert per Portal direkt an <body>: kein übergeordnetes Element mit
+ *   transform/filter/overflow kann das fixed-Overlay stören.
+ * - Verwaltet den aktuellen Index selbst: Blättern funktioniert unabhängig
+ *   vom Eltern-State zuverlässig.
+ * - Tastatur: ← / → blättern, Esc schließt. Klick auf den Hintergrund schließt.
+ * Wiederverwendbar für jede Kollektion (einfach images + startIndex übergeben).
  */
 export default function Lightbox({
   images,
-  index,
+  startIndex = 0,
   groupTitle,
   onClose,
-  onChange,
 }: {
   images: GalleryImage[];
-  index: number;
+  startIndex?: number;
   groupTitle?: string;
   onClose: () => void;
-  onChange: (i: number) => void;
 }) {
   const n = images.length;
-  const go = useCallback(
-    (d: number) => onChange((index + d + n) % n),
-    [index, n, onChange]
-  );
+  const [i, setI] = useState(startIndex);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+  useEffect(() => setI(startIndex), [startIndex]);
+
+  const go = useCallback((d: number) => setI((p) => (p + d + n) % n), [n]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -43,22 +49,23 @@ export default function Lightbox({
     };
   }, [go, onClose]);
 
-  if (n === 0) return null;
-  const img = images[Math.max(0, Math.min(index, n - 1))];
+  if (!mounted || n === 0) return null;
+  const idx = ((i % n) + n) % n;
+  const img = images[idx];
 
-  return (
+  const overlay = (
     <div
       role="dialog"
       aria-modal="true"
       aria-label={`Bilder${groupTitle ? ` — ${groupTitle}` : ""}`}
       onClick={onClose}
-      className="fixed inset-0 z-[120] flex flex-col items-center justify-center bg-ink/92 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-ink/92 p-4 backdrop-blur-sm"
     >
       <button
         type="button"
         aria-label="Schließen"
         onClick={onClose}
-        className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-cream/30 text-cream/90 transition hover:bg-cream/10"
+        className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-cream/30 text-cream/90 transition hover:bg-cream/10"
       >
         <span aria-hidden className="text-xl leading-none">
           ✕
@@ -73,7 +80,7 @@ export default function Lightbox({
             e.stopPropagation();
             go(-1);
           }}
-          className="absolute left-3 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-cream/30 text-cream/90 transition hover:bg-cream/10 sm:left-6"
+          className="absolute left-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-cream/30 text-cream/90 transition hover:bg-cream/10 sm:left-6"
         >
           <span aria-hidden className="text-2xl leading-none">
             ‹
@@ -83,7 +90,7 @@ export default function Lightbox({
 
       <figure
         onClick={(e) => e.stopPropagation()}
-        className="flex max-h-[88vh] max-w-4xl flex-col items-center"
+        className="m-0 flex max-h-[88vh] max-w-4xl flex-col items-center"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -95,7 +102,7 @@ export default function Lightbox({
           {img.label}
           {groupTitle ? ` · ${groupTitle}` : ""}{" "}
           <span className="text-cream/50">
-            ({index + 1}/{n})
+            ({idx + 1}/{n})
           </span>
         </figcaption>
       </figure>
@@ -108,7 +115,7 @@ export default function Lightbox({
             e.stopPropagation();
             go(1);
           }}
-          className="absolute right-3 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-cream/30 text-cream/90 transition hover:bg-cream/10 sm:right-6"
+          className="absolute right-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-cream/30 text-cream/90 transition hover:bg-cream/10 sm:right-6"
         >
           <span aria-hidden className="text-2xl leading-none">
             ›
@@ -117,4 +124,6 @@ export default function Lightbox({
       )}
     </div>
   );
+
+  return createPortal(overlay, document.body);
 }

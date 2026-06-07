@@ -1,16 +1,16 @@
 
 const LINKS = [
-  { label: "Kollektion", href: "#kollektion" },
-  { label: "Handwerk", href: "#handwerk" },
-  { label: "Materialien", href: "#materialien" },
-  { label: "Geschichte", href: "#geschichte" },
-  { label: "Kontakt", href: "#kontakt" },
+  { label: "Kollektion", href: "/#kollektion" },
+  { label: "Handwerk", href: "/#handwerk" },
+  { label: "Materialien", href: "/#materialien" },
+  { label: "Geschichte", href: "/#geschichte" },
+  { label: "Kontakt", href: "/#kontakt" },
 ];
 
 const LEGAL = [
   { label: "Impressum", href: "/impressum" },
   { label: "Datenschutz", href: "/datenschutz" },
-  { label: "Kontakt", href: "#kontakt" },
+  { label: "Kontakt", href: "/#kontakt" },
 ];
 
 export default function Footer() {

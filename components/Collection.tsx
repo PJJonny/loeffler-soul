@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Reveal from "./Reveal";
 import Lightbox, { type GalleryImage } from "./Lightbox";
 
@@ -123,6 +123,27 @@ export default function Collection() {
     const i = GALLERY[size].findIndex((g) => g.src === src);
     setView({ size, index: i < 0 ? 0 : i });
   };
+
+  // Erlaubt das Öffnen der Galerie von außen (z. B. Klick auf das Hero-Bild)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const d = (e as CustomEvent).detail as {
+        size?: SizeKey;
+        index?: number;
+      };
+      if (d?.size === "Standard" || d?.size === "Kompakt") {
+        const max = GALLERY[d.size].length - 1;
+        const idx = Math.min(Math.max(d.index ?? 0, 0), max);
+        setView({ size: d.size, index: idx });
+      }
+    };
+    window.addEventListener("loeffler:open-gallery", handler as EventListener);
+    return () =>
+      window.removeEventListener(
+        "loeffler:open-gallery",
+        handler as EventListener
+      );
+  }, []);
 
   return (
     <section id="kollektion" className="scroll-mt-36 bg-cream">
@@ -344,10 +365,9 @@ export default function Collection() {
       {view && (
         <Lightbox
           images={GALLERY[view.size]}
-          index={view.index}
+          startIndex={view.index}
           groupTitle={`Sling ${view.size}`}
           onClose={() => setView(null)}
-          onChange={(idx) => setView({ size: view.size, index: idx })}
         />
       )}
     </section>
