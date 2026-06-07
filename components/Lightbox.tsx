@@ -7,12 +7,12 @@ export type GalleryImage = { src: string; alt: string; label: string };
 
 /**
  * Robuster, abhängigkeitsfreier Bild-Viewer (Lightbox).
- * - Rendert per Portal direkt an <body>: kein übergeordnetes Element mit
- *   transform/filter/overflow kann das fixed-Overlay stören.
- * - Verwaltet den aktuellen Index selbst: Blättern funktioniert unabhängig
- *   vom Eltern-State zuverlässig.
+ * - Rendert per Portal direkt an <body>: kein übergeordnetes Element kann
+ *   das fixed-Overlay stören.
+ * - Verwaltet den aktuellen Index selbst -> Blättern funktioniert zuverlässig.
+ * - Pfeile kleben am Bildrand (auf jeder Bildschirmgröße sichtbar), mit
+ *   kräftigem Hintergrund. Bildtitel in gut lesbarem Feld.
  * - Tastatur: ← / → blättern, Esc schließt. Klick auf den Hintergrund schließt.
- * Wiederverwendbar für jede Kollektion (einfach images + startIndex übergeben).
  */
 export default function Lightbox({
   images,
@@ -53,75 +53,84 @@ export default function Lightbox({
   const idx = ((i % n) + n) % n;
   const img = images[idx];
 
+  const navBtn =
+    "flex h-12 w-12 items-center justify-center rounded-full bg-ink/55 text-cream ring-1 ring-cream/40 backdrop-blur-sm transition hover:bg-ink/80 sm:h-14 sm:w-14";
+
   const overlay = (
     <div
       role="dialog"
       aria-modal="true"
       aria-label={`Bilder${groupTitle ? ` — ${groupTitle}` : ""}`}
       onClick={onClose}
-      className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-ink/92 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-[200] flex select-none flex-col items-center justify-center gap-5 bg-ink/95 p-4 backdrop-blur-sm sm:p-6"
     >
+      {/* Schließen */}
       <button
         type="button"
         aria-label="Schließen"
         onClick={onClose}
-        className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-cream/30 text-cream/90 transition hover:bg-cream/10"
+        className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-cream/15 text-cream ring-1 ring-cream/40 backdrop-blur-sm transition hover:bg-cream/25"
       >
         <span aria-hidden className="text-xl leading-none">
           ✕
         </span>
       </button>
 
-      {n > 1 && (
-        <button
-          type="button"
-          aria-label="Vorheriges Bild"
-          onClick={(e) => {
-            e.stopPropagation();
-            go(-1);
-          }}
-          className="absolute left-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-cream/30 text-cream/90 transition hover:bg-cream/10 sm:left-6"
-        >
-          <span aria-hidden className="text-2xl leading-none">
-            ‹
-          </span>
-        </button>
-      )}
-
       <figure
         onClick={(e) => e.stopPropagation()}
-        className="m-0 flex max-h-[88vh] max-w-4xl flex-col items-center"
+        className="m-0 flex flex-col items-center gap-4"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={img.src}
-          alt={img.alt}
-          className="max-h-[80vh] w-auto max-w-full rounded-sm object-contain shadow-2xl"
-        />
-        <figcaption className="mt-4 text-center text-[0.7rem] uppercase tracking-eyebrow text-cream/80">
+        {/* Bild + Pfeile (Pfeile kleben am Bildrand) */}
+        <div className="relative inline-flex">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={img.src}
+            alt={img.alt}
+            className="block max-h-[78vh] w-auto max-w-[88vw] rounded-sm object-contain shadow-2xl"
+          />
+
+          {n > 1 && (
+            <>
+              <button
+                type="button"
+                aria-label="Vorheriges Bild"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  go(-1);
+                }}
+                className={`absolute left-2 top-1/2 z-20 -translate-y-1/2 sm:left-3 ${navBtn}`}
+              >
+                <span aria-hidden className="text-2xl leading-none">
+                  ‹
+                </span>
+              </button>
+
+              <button
+                type="button"
+                aria-label="Nächstes Bild"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  go(1);
+                }}
+                className={`absolute right-2 top-1/2 z-20 -translate-y-1/2 sm:right-3 ${navBtn}`}
+              >
+                <span aria-hidden className="text-2xl leading-none">
+                  ›
+                </span>
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Bildtitel – klar lesbares Feld */}
+        <figcaption className="rounded-full bg-ink/75 px-5 py-2 text-center text-[0.72rem] uppercase tracking-eyebrow text-cream ring-1 ring-cream/15">
           {img.label}
           {groupTitle ? ` · ${groupTitle}` : ""}{" "}
-          <span className="text-cream/50">
+          <span className="text-cream/60">
             ({idx + 1}/{n})
           </span>
         </figcaption>
       </figure>
-
-      {n > 1 && (
-        <button
-          type="button"
-          aria-label="Nächstes Bild"
-          onClick={(e) => {
-            e.stopPropagation();
-            go(1);
-          }}
-          className="absolute right-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-cream/30 text-cream/90 transition hover:bg-cream/10 sm:right-6"
-        >
-          <span aria-hidden className="text-2xl leading-none">
-            ›
-          </span>
-        </button>
-      )}
     </div>
   );
 

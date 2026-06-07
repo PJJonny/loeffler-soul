@@ -388,14 +388,16 @@
   </div>
 </footer>
 
-<div id="lbov" onclick="lbClose()" style="display:none;position:fixed;inset:0;z-index:120;background:rgba(33,28,23,.92);backdrop-filter:blur(4px);align-items:center;justify-content:center;flex-direction:column;padding:1rem">
-  <button onclick="event.stopPropagation();lbClose()" aria-label="Schließen" style="position:absolute;right:1rem;top:1rem;width:2.75rem;height:2.75rem;border-radius:999px;border:1px solid rgba(243,238,229,.3);background:transparent;color:#f3eee5;font-size:1.1rem;cursor:pointer">✕</button>
-  <button onclick="event.stopPropagation();lbGo(-1)" aria-label="Zurück" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);width:3rem;height:3rem;border-radius:999px;border:1px solid rgba(243,238,229,.3);background:transparent;color:#f3eee5;font-size:1.5rem;cursor:pointer">‹</button>
-  <figure onclick="event.stopPropagation()" style="margin:0;display:flex;flex-direction:column;align-items:center;max-width:56rem;max-height:88vh">
-    <img id="lbimg" alt="" style="max-height:80vh;max-width:100%;width:auto;border-radius:3px;box-shadow:0 20px 60px rgba(0,0,0,.5)">
-    <figcaption id="lbcap" style="margin-top:1rem;color:rgba(243,238,229,.8);font-size:.7rem;text-transform:uppercase;letter-spacing:.16em"></figcaption>
+<div id="lbov" onclick="lbClose()" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(33,28,23,.95);backdrop-filter:blur(4px);align-items:center;justify-content:center;flex-direction:column;gap:1.1rem;padding:1rem">
+  <button onclick="event.stopPropagation();lbClose()" aria-label="Schließen" style="position:absolute;right:1rem;top:1rem;z-index:5;width:2.75rem;height:2.75rem;border-radius:999px;border:1px solid rgba(243,238,229,.4);background:rgba(243,238,229,.15);color:#f3eee5;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">✕</button>
+  <figure onclick="event.stopPropagation()" style="margin:0;display:flex;flex-direction:column;align-items:center;gap:1rem">
+    <div style="position:relative;display:inline-flex">
+      <img id="lbimg" alt="" style="display:block;max-height:78vh;max-width:88vw;width:auto;border-radius:3px;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+      <button onclick="event.stopPropagation();lbGo(-1)" aria-label="Zurück" style="position:absolute;left:.6rem;top:50%;transform:translateY(-50%);width:3rem;height:3rem;border-radius:999px;border:1px solid rgba(243,238,229,.45);background:rgba(33,28,23,.55);color:#f3eee5;font-size:1.6rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">‹</button>
+      <button onclick="event.stopPropagation();lbGo(1)" aria-label="Weiter" style="position:absolute;right:.6rem;top:50%;transform:translateY(-50%);width:3rem;height:3rem;border-radius:999px;border:1px solid rgba(243,238,229,.45);background:rgba(33,28,23,.55);color:#f3eee5;font-size:1.6rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">›</button>
+    </div>
+    <figcaption id="lbcap" style="margin:0;background:rgba(33,28,23,.75);border:1px solid rgba(243,238,229,.18);border-radius:999px;padding:.5rem 1.2rem;color:#f3eee5;font-size:.72rem;text-transform:uppercase;letter-spacing:.16em"></figcaption>
   </figure>
-  <button onclick="event.stopPropagation();lbGo(1)" aria-label="Weiter" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:3rem;height:3rem;border-radius:999px;border:1px solid rgba(243,238,229,.3);background:transparent;color:#f3eee5;font-size:1.5rem;cursor:pointer">›</button>
 </div>
 
 <script>
