@@ -36,7 +36,7 @@ export default function Materials() {
             </p>
           </Reveal>
           <Reveal delay={100}>
-            <h2 className="font-display text-3xl font-light leading-tight text-ink sm:text-4xl">
+            <h2 className="font-display text-3xl font-normal leading-tight text-ink sm:text-4xl">
               Wir benennen, was wir wissen.
             </h2>
           </Reveal>

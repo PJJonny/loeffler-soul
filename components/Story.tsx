@@ -16,7 +16,7 @@ export default function Story() {
         </Reveal>
 
         <Reveal delay={100}>
-          <h2 className="font-display text-3xl font-light leading-tight text-ink sm:text-4xl">
+          <h2 className="font-display text-3xl font-normal leading-tight text-ink sm:text-4xl">
             Aus Handwerk, nicht aus einem Businessplan.
           </h2>
         </Reveal>
@@ -53,7 +53,7 @@ export default function Story() {
 
           <Reveal delay={220}>
             <blockquote className="border-l-2 border-cognac py-2 pl-6">
-              <p className="font-display text-2xl font-light leading-snug text-ink sm:text-3xl">
+              <p className="font-display text-2xl font-normal leading-snug text-ink sm:text-3xl">
                 Ich wollte Dinge machen, die man behält — nicht ersetzt.
               </p>
             </blockquote>

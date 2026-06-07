@@ -1,5 +1,66 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import Reveal from "./Reveal";
+import Lightbox, { type GalleryImage } from "./Lightbox";
+
+/**
+ * SKALIERBAR: Diese Datei beschreibt EINE Kollektion ("No. 01 — Die Sling").
+ * Für weitere Kollektionen lassen sich GALLERY/SIZES/DETAILS als eigener
+ * Datensatz duplizieren bzw. in ein Array von Kollektionen auslagern – die
+ * Lightbox (components/Lightbox.tsx) ist bereits wiederverwendbar.
+ */
+
+type SizeKey = "Standard" | "Kompakt";
+
+// Bilder je Größe – Grundlage für den klickbaren Bilder-Viewer.
+const GALLERY: Record<SizeKey, GalleryImage[]> = {
+  Standard: [
+    {
+      src: "/hero.jpg",
+      label: "Am Körper",
+      alt: "Die Sling Standard aus cognacfarbenem Vollnarbenleder am Körper getragen",
+    },
+    {
+      src: "/produkt-detail.jpg",
+      label: "Leder & Detail",
+      alt: "Detailaufnahme von Narbung, Naht und Prägung der Sling Standard",
+    },
+    {
+      src: "/futter.jpg",
+      label: "Innenleben",
+      alt: "Geöffnete Sling Standard mit geblümtem Futter und Reißverschluss-Innentasche",
+    },
+    {
+      src: "/innen.jpg",
+      label: "Beschläge",
+      alt: "Umlaufender Reißverschluss und Karabinerhaken der Sling Standard",
+    },
+  ],
+  Kompakt: [
+    {
+      src: "/produkt-front.jpg",
+      label: "An Deck",
+      alt: "Die Sling Kompakt aus Vollnarbenleder an Deck eines Segelboots, mit eingeprägtem Logo",
+    },
+    {
+      src: "/getragen.jpg",
+      label: "Am Körper",
+      alt: "Die Sling Kompakt als Crossbody am Körper getragen – unisex",
+    },
+    {
+      src: "/kompakt-deck2.jpg",
+      label: "An Deck",
+      alt: "Die Sling Kompakt auf dem Teakdeck eines Segelboots am Bodensee",
+    },
+    {
+      src: "/getragen2.jpg",
+      label: "Am Körper",
+      alt: "Die Sling Kompakt als Crossbody auf einem Segelboot getragen – unisex, reiferer Träger",
+    },
+  ],
+};
 
 // Ehrliche Eckdaten – keine erfundenen Marken, keine Übertreibung.
 const SPECS: [string, string][] = [
@@ -14,8 +75,9 @@ const SPECS: [string, string][] = [
 ];
 
 // Zwei Größen derselben Form
-const SIZES: { name: string; price: string; text: string; note: string }[] = [
+const SIZES: { key: SizeKey; name: string; price: string; text: string; note: string }[] = [
   {
+    key: "Standard",
     name: "Sling — Standard",
     price: "429 €",
     text:
@@ -23,33 +85,45 @@ const SIZES: { name: string; price: string; text: string; note: string }[] = [
     note: "Mit Innentasche · Auf Vorbestellung",
   },
   {
+    key: "Kompakt",
     name: "Sling — Kompakt",
     price: "349 €",
     text:
-      "Eine Nummer kleiner, etwa im Format einer klassischen Bauchtasche. Reduziert auf das Nötige, noch näher am Körper.",
+      "Eine Nummer kleiner, etwa im Format einer klassischen Bauchtasche. Reduziert auf das Nötige, noch näher am Körper. Als Crossbody getragen ein ruhiger, unisex Begleiter durch den Tag.",
     note: "Mit Innentasche · Auf Vorbestellung",
   },
 ];
 
-const DETAILS = [
+// Detail-Kacheln – jede eindeutig einer Größe zugeordnet.
+const DETAILS: { src: string; alt: string; cap: string; size: SizeKey }[] = [
   {
     src: "/produkt-detail.jpg",
-    alt: "Detail: Narbung, Naht und Prägung des Leders",
-    cap: "Leder & Detail",
+    size: "Standard",
+    alt: "Detail: Narbung, Naht und Prägung des Leders der Sling Standard",
+    cap: "Leder & Detail · Standard",
   },
   {
     src: "/getragen.jpg",
-    alt: "Die Sling körpernah getragen",
-    cap: "Am Körper",
+    size: "Kompakt",
+    alt: "Die Sling Kompakt als Crossbody am Körper getragen – unisex",
+    cap: "Am Körper · Kompakt",
   },
   {
-    src: "/innen.jpg",
-    alt: "Umlaufender Reißverschluss und Karabinerhaken",
-    cap: "Beschläge",
+    src: "/futter.jpg",
+    size: "Standard",
+    alt: "Innenleben der Sling Standard: geblümtes Futter und Reißverschluss-Innentasche",
+    cap: "Innenleben · Standard",
   },
 ];
 
 export default function Collection() {
+  const [view, setView] = useState<{ size: SizeKey; index: number } | null>(null);
+
+  const open = (size: SizeKey, src: string) => {
+    const i = GALLERY[size].findIndex((g) => g.src === src);
+    setView({ size, index: i < 0 ? 0 : i });
+  };
+
   return (
     <section id="kollektion" className="scroll-mt-36 bg-cream">
       <div className="mx-auto max-w-container px-5 py-24 sm:px-8 lg:py-32">
@@ -62,7 +136,7 @@ export default function Collection() {
             </p>
           </Reveal>
           <Reveal delay={100}>
-            <h2 className="font-display text-3xl font-light leading-tight text-ink sm:text-4xl">
+            <h2 className="font-display text-3xl font-normal leading-tight text-ink sm:text-4xl">
               No. 01 — Die Sling
             </h2>
           </Reveal>
@@ -76,19 +150,32 @@ export default function Collection() {
           </Reveal>
         </div>
 
-        {/* Zeile 1: große Frontansicht + Beschreibung & Eckdaten */}
+        {/* Zeile 1: große Frontansicht (Kompakt) + Beschreibung & Eckdaten */}
         <div className="grid gap-6 lg:grid-cols-12 lg:gap-8">
           <Reveal delay={0} className="lg:col-span-7">
-            <figure className="group relative aspect-[4/3] overflow-hidden bg-sand">
-              {/* BILD: Frontansicht der Tasche -> /public/produkt-front.jpg (Querformat 4:3) */}
-              <Image
-                src="/produkt-front.jpg"
-                alt="Frontansicht der LOEFFLER SOUL Sling aus Vollnarbenleder"
-                fill
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                className="img-zoom object-cover"
-              />
-            </figure>
+            <button
+              type="button"
+              onClick={() => open("Kompakt", "/produkt-front.jpg")}
+              className="group block w-full cursor-zoom-in text-left"
+              aria-label="Bilder der Sling Kompakt ansehen"
+            >
+              <figure className="relative aspect-[4/3] overflow-hidden bg-sand">
+                {/* BILD: Frontansicht (Kompakt, Segelboot) -> /public/produkt-front.jpg */}
+                <Image
+                  src="/produkt-front.jpg"
+                  alt="Die Sling Kompakt aus Vollnarbenleder an Deck eines Segelboots, mit eingeprägtem Logo"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  className="img-zoom object-cover"
+                />
+                <figcaption className="absolute bottom-4 left-4 rounded-full bg-cream/80 px-4 py-1.5 text-[0.62rem] uppercase tracking-eyebrow text-ink backdrop-blur-sm">
+                  Sling Kompakt
+                </figcaption>
+                <span className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-ink/70 px-3 py-1.5 text-[0.6rem] uppercase tracking-eyebrow text-cream opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                  Bilder ansehen
+                </span>
+              </figure>
+            </button>
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-5">
@@ -115,25 +202,34 @@ export default function Collection() {
           </Reveal>
         </div>
 
-        {/* Zeile 2: Detail · getragen · Beschläge */}
+        {/* Zeile 2: Detailkacheln – jede mit Größenangabe, klickbar */}
         <div className="mt-6 grid gap-6 sm:grid-cols-3 lg:mt-8 lg:gap-8">
           {DETAILS.map((img, i) => (
             <Reveal key={img.src} delay={i * 120}>
-              <figure className="group">
-                <div className="relative aspect-[3/4] overflow-hidden bg-sand">
-                  {/* BILD: ersetze die Datei in /public mit gleichem Namen */}
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 30vw"
-                    className="img-zoom object-cover"
-                  />
-                </div>
-                <figcaption className="mt-3 text-[0.68rem] uppercase tracking-eyebrow text-stone">
-                  {img.cap}
-                </figcaption>
-              </figure>
+              <button
+                type="button"
+                onClick={() => open(img.size, img.src)}
+                className="group block w-full cursor-zoom-in text-left"
+                aria-label={`Bilder ansehen: ${img.cap}`}
+              >
+                <figure>
+                  <div className="relative aspect-[3/4] overflow-hidden bg-sand">
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 30vw"
+                      className="img-zoom object-cover"
+                    />
+                    <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-ink/70 px-3 py-1 text-[0.56rem] uppercase tracking-eyebrow text-cream opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                      Ansehen
+                    </span>
+                  </div>
+                  <figcaption className="mt-3 text-[0.68rem] uppercase tracking-eyebrow text-stone">
+                    {img.cap}
+                  </figcaption>
+                </figure>
+              </button>
             </Reveal>
           ))}
         </div>
@@ -141,45 +237,100 @@ export default function Collection() {
         {/* Zwei Größen + Vorbestellung */}
         <Reveal>
           <div className="mt-20 max-w-2xl border-t border-line pt-14">
-            <h3 className="font-display text-3xl font-light leading-tight text-ink sm:text-3xl">
+            <h3 className="font-display text-3xl font-normal leading-tight text-ink sm:text-3xl">
               Zwei Größen, dieselbe Form
             </h3>
             <p className="mt-5 max-w-prose text-base leading-relaxed text-stone">
               Die Sling gibt es in zwei Größen — beide mit Innentasche, beide
-              aktuell auf Vorbestellung. So findest du die Tasche, die zu deinem
-              Alltag passt.
+              unisex und aktuell auf Vorbestellung. Ob über der Schulter oder als
+              Crossbody getragen: So findest du die Form, die zu deinem Alltag
+              passt. Tipp: Tippe auf eine Größe, um durch alle Bilder zu blättern.
             </p>
           </div>
         </Reveal>
 
+        <Reveal>
+          <figure className="mt-10">
+            <div className="relative aspect-[3/2] overflow-hidden bg-sand">
+              {/* BILD: Größenvergleich beider Größen -> /public/groessen.jpg */}
+              <Image
+                src="/groessen.jpg"
+                alt="Größenvergleich der Sling: oben die kleinere Kompakt, unten die größere Standard, mit Maßband"
+                fill
+                sizes="(max-width: 1024px) 100vw, 70vw"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="mt-3 text-[0.68rem] uppercase tracking-eyebrow text-stone">
+              Größenvergleich — oben die Kompakt, unten die Standard
+            </figcaption>
+          </figure>
+        </Reveal>
+
         <div className="mt-10 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2">
           {SIZES.map((s, i) => (
-            <Reveal key={s.name} delay={i * 120}>
+            <Reveal key={s.key} delay={i * 120}>
               <div className="flex h-full flex-col bg-paper p-8 sm:p-10">
-              <div className="flex items-baseline justify-between gap-4">
-                <h4 className="font-display text-2xl font-light text-ink">
-                  {s.name}
-                </h4>
-                <span className="font-display text-xl font-light text-ink">
-                  {s.price}
-                </span>
-              </div>
+                <div className="flex items-baseline justify-between gap-4">
+                  <h4 className="font-display text-2xl font-normal text-ink">
+                    {s.name}
+                  </h4>
+                  <span className="font-display text-xl font-normal text-ink">
+                    {s.price}
+                  </span>
+                </div>
                 <p className="mt-4 flex-1 text-base leading-relaxed text-stone">
                   {s.text}
                 </p>
                 <p className="mt-6 text-[0.68rem] uppercase tracking-eyebrow text-stone">
                   {s.note}
                 </p>
-                <a
-                  href="#kontakt"
-                  className="mt-5 inline-flex w-fit items-center gap-2 border border-ink px-6 py-3 text-[0.72rem] uppercase tracking-eyebrow text-ink transition-colors duration-300 hover:bg-ink hover:text-cream"
-                >
-                  Auf die Warteliste
-                </a>
+                <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <a
+                    href="#kontakt"
+                    className="inline-flex w-fit items-center gap-2 border border-ink px-6 py-3 text-[0.72rem] uppercase tracking-eyebrow text-ink transition-colors duration-300 hover:bg-ink hover:text-cream"
+                  >
+                    Auf die Warteliste
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => open(s.key, GALLERY[s.key][0].src)}
+                    className="inline-flex items-center gap-1.5 text-[0.72rem] uppercase tracking-eyebrow text-cognac transition-colors duration-300 hover:text-cognac-deep"
+                  >
+                    Bilder ansehen
+                    <span aria-hidden>→</span>
+                  </button>
+                </div>
               </div>
             </Reveal>
           ))}
         </div>
+
+        <Reveal>
+          <p className="mt-5 max-w-prose text-[0.78rem] leading-relaxed text-stone/80">
+            Richtpreise. Versandkosten und alle steuerlichen Angaben erhältst du
+            transparent in deinem persönlichen Angebot — die Anfrage ist
+            unverbindlich.
+          </p>
+        </Reveal>
+
+        <Reveal>
+          <figure className="mt-16">
+            <div className="relative aspect-[3/2] overflow-hidden bg-sand">
+              {/* BILD: Farbpalette der Sling -> /public/farben.jpg */}
+              <Image
+                src="/farben.jpg"
+                alt="Mehrere Sling-Taschen in verschiedenen Lederfarben auf einer Lederhaut im Atelier"
+                fill
+                sizes="(max-width: 1024px) 100vw, 70vw"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="mt-3 text-[0.68rem] uppercase tracking-eyebrow text-stone">
+              Auch in weiteren Lederfarben — kleine Chargen
+            </figcaption>
+          </figure>
+        </Reveal>
 
         <Reveal>
           <p className="mt-10 max-w-prose text-sm leading-relaxed text-stone">
@@ -189,6 +340,16 @@ export default function Collection() {
           </p>
         </Reveal>
       </div>
+
+      {view && (
+        <Lightbox
+          images={GALLERY[view.size]}
+          index={view.index}
+          groupTitle={`Sling ${view.size}`}
+          onClose={() => setView(null)}
+          onChange={(idx) => setView({ size: view.size, index: idx })}
+        />
+      )}
     </section>
   );
 }

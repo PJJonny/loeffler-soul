@@ -18,7 +18,7 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={120}>
-            <h1 className="font-display text-[2.3rem] font-light leading-[1.1] text-ink sm:text-[2.9rem] lg:text-[3.5rem]">
+            <h1 className="font-display text-[2.3rem] font-normal leading-[1.1] text-ink sm:text-[2.9rem] lg:text-[3.5rem]">
               Entworfen für{" "}
               <span className="text-cognac-deep">Jahre</span>,
               <br />
@@ -28,8 +28,8 @@ export default function Hero() {
 
           <Reveal delay={240}>
             <p className="mt-7 max-w-prose text-base leading-relaxed text-stone sm:text-lg">
-              Handgefertigte Taschen aus pflanzlich gegerbtem Vollnarbenleder.
-              Entworfen, um mit der Zeit persönlicher zu werden.
+              Handgefertigte Ledertaschen aus pflanzlich gegerbtem
+              Vollnarbenleder. Entworfen, um mit der Zeit persönlicher zu werden.
             </p>
           </Reveal>
 
@@ -64,14 +64,14 @@ export default function Hero() {
             */}
             <Image
               src="/hero.jpg"
-              alt="LOEFFLER SOUL Tasche, am Körper getragen"
+              alt="Handgefertigte LOEFFLER SOUL Sling aus Vollnarbenleder, am Körper getragen"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 45vw"
               className="img-zoom object-cover"
             />
             <figcaption className="absolute bottom-4 left-4 rounded-full bg-cream/80 px-4 py-1.5 text-[0.62rem] uppercase tracking-eyebrow text-ink backdrop-blur-sm">
-              No. 01 — Die Sling
+              No. 01 — Die Sling · Standard
             </figcaption>
           </figure>
         </Reveal>

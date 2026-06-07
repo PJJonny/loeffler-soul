@@ -19,7 +19,7 @@ export default function Manifest() {
         <div className="space-y-3 sm:space-y-4">
           {LINES.map((line, i) => (
             <Reveal key={line} delay={i * 140}>
-              <p className="font-display text-2xl font-light leading-snug text-ink sm:text-[2.1rem] lg:text-[2.6rem]">
+              <p className="font-display text-2xl font-normal leading-snug text-ink sm:text-[2.1rem] lg:text-[2.6rem]">
                 {line}
               </p>
             </Reveal>

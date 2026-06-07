@@ -38,7 +38,7 @@ export default function Principles() {
           {PRINCIPLES.map((p, i) => (
             <Reveal key={p.title} delay={(i % 4) * 90}>
               <div className="flex h-full flex-col bg-paper p-8 lg:p-9">
-                <span className="font-display text-2xl font-light text-cognac/70">
+                <span className="font-display text-2xl font-normal text-cognac/70">
                   {p.n}
                 </span>
                 <h3 className="mt-5 font-display text-2xl text-ink">

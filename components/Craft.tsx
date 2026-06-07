@@ -45,7 +45,7 @@ export default function Craft() {
             </p>
           </Reveal>
           <Reveal delay={100}>
-            <h2 className="font-display text-3xl font-light leading-tight text-ink sm:text-4xl">
+            <h2 className="font-display text-3xl font-normal leading-tight text-ink sm:text-4xl">
               Sechs bis acht Stunden,
               <br className="hidden sm:block" /> ein Paar Hände.
             </h2>
@@ -64,7 +64,7 @@ export default function Craft() {
           {STEPS.map((step, i) => (
             <Reveal key={step.n} delay={(i % 3) * 100}>
               <div className="group h-full bg-paper p-8 transition-colors duration-500 hover:bg-cream">
-                <span className="font-display text-3xl font-light text-cognac/70">
+                <span className="font-display text-3xl font-normal text-cognac/70">
                   {step.n}
                 </span>
                 <h3 className="mt-4 font-display text-xl text-ink">

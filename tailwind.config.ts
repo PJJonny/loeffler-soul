@@ -23,7 +23,7 @@ const config: Config = {
         sans: ["var(--font-body)", "system-ui", "sans-serif"],
       },
       letterSpacing: {
-        eyebrow: "0.22em",
+        eyebrow: "0.16em",
         wide: "0.06em",
       },
       maxWidth: {

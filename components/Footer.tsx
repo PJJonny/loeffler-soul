@@ -22,9 +22,9 @@ export default function Footer() {
           <div>
             <p className="font-display text-2xl leading-none tracking-[0.16em] text-cream">
               <span className="font-medium">LOEFFLER</span>{" "}
-              <span className="font-light">SOUL</span>
+              <span className="font-normal">SOUL</span>
             </p>
-            <p className="mt-6 max-w-xs font-display text-xl font-light leading-snug text-cream/90">
+            <p className="mt-6 max-w-xs font-display text-xl font-normal leading-snug text-cream/90">
               Handgefertigte Taschen mit Charakter.
             </p>
             <a

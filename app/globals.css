@@ -46,9 +46,13 @@ body {
    Schnitt pinnen (statt automatisch in den dramatischen Display-Schnitt zu
    springen). Das hält die Buchstaben gerade und gleichmäßig. */
 .font-display {
-  font-optical-sizing: none;
-  font-variation-settings: "opsz" 30;
   font-feature-settings: "kern", "liga";
+  text-wrap: balance;
+}
+
+/* Ruhigeres Wrapping im Fließtext (vermeidet einzelne Wörter in der letzten Zeile) */
+p {
+  text-wrap: pretty;
 }
 
 /* Feiner Fokusring für Tastaturnutzung (Accessibility) */

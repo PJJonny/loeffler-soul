@@ -29,7 +29,7 @@ export default function Patina() {
               </p>
             </Reveal>
             <Reveal delay={100}>
-              <h2 className="font-display text-3xl font-light leading-tight sm:text-[2.7rem]">
+              <h2 className="font-display text-3xl font-normal leading-tight sm:text-[2.7rem]">
                 Die Tasche wird nicht verbraucht.
                 <br />
                 Sie wird <span className="text-cognac">persönlicher</span>.

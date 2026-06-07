@@ -105,7 +105,7 @@ export default function Contact() {
             <span className="h-px w-8 bg-cognac" />
             Kontakt
           </p>
-          <h2 className="font-display text-3xl font-light leading-tight text-ink sm:text-4xl">
+          <h2 className="font-display text-3xl font-normal leading-tight text-ink sm:text-4xl">
             Schreib uns.
           </h2>
           <p className="mt-6 max-w-prose text-base leading-relaxed text-stone">
@@ -127,7 +127,7 @@ export default function Contact() {
         <div className="border border-line bg-paper p-6 sm:p-10">
           {status === "success" ? (
             <div className="flex min-h-[20rem] flex-col items-start justify-center">
-              <span className="font-display text-3xl font-light text-ink">
+              <span className="font-display text-3xl font-normal text-ink">
                 Danke für deine Nachricht.
               </span>
               <p className="mt-4 max-w-md text-base leading-relaxed text-stone">
@@ -261,6 +261,11 @@ export default function Contact() {
               >
                 {status === "loading" ? "Wird gesendet …" : "Anfrage senden"}
               </button>
+
+              <p className="mt-4 text-[0.75rem] leading-relaxed text-stone/80">
+                Deine Anfrage ist unverbindlich — es entsteht dadurch kein
+                Kaufvertrag. Wir melden uns persönlich bei dir.
+              </p>
             </form>
           )}
         </div>

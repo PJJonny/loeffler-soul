@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import LegalShell from "@/components/LegalShell";
 
 export const metadata: Metadata = {
-  title: "Impressum – LOEFFLER SOUL",
+  title: "Impressum",
+  description: "Impressum und Anbieterkennzeichnung von LOEFFLER SOUL.",
+  alternates: { canonical: "https://loefflersoul.de/impressum" },
   robots: { index: true, follow: true },
 };
 
