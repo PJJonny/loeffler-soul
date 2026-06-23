@@ -11,7 +11,7 @@ export default function Patina() {
             {/* BILD: Leder-Detail, das Patina zeigt -> /public/produkt-detail.jpg */}
             <Image
               src="/produkt-detail.jpg"
-              alt="Pflanzlich gegerbtes Vollnarbenleder mit beginnender Patina"
+              alt="Pflanzlich gegerbtes, nubukiertes Rindleder mit beginnender Patina"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="img-zoom object-cover"
@@ -30,7 +30,7 @@ export default function Patina() {
             </Reveal>
             <Reveal delay={100}>
               <h2 className="font-display text-3xl font-normal leading-tight sm:text-[2.7rem]">
-                Die Tasche wird nicht verbraucht.
+                Die Tasche nutzt sich nicht ab.
                 <br />
                 Sie wird <span className="text-cognac">persönlicher</span>.
               </h2>
@@ -38,8 +38,8 @@ export default function Patina() {
             <Reveal delay={200}>
               <div className="mt-7 space-y-5 text-base leading-relaxed text-cream/80">
                 <p>
-                  Pflanzlich gegerbtes Vollnarbenleder hat eine natürliche,
-                  offene Oberfläche. Gebrauch, Sonnenlicht und Berührung
+                  Pflanzlich gegerbtes, nubukiertes Rindleder hat eine samtig-weiche,
+                  offenporige Oberfläche. Gebrauch, Sonnenlicht und Berührung
                   verändern sie — langsam, sichtbar, unverwechselbar.
                 </p>
                 <p>

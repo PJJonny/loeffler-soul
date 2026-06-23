@@ -24,6 +24,7 @@ const ACCESS_KEY =
 const INTERESSEN = [
   "Vorbestellung – Sling (Standard)",
   "Vorbestellung – Sling (Kompakt)",
+  "Vorbestellung – Luna",
   "Produktanfrage",
   "Presse / Kooperation",
   "Sonstiges",
@@ -110,7 +111,7 @@ export default function Contact() {
           </h2>
           <p className="mt-6 max-w-prose text-base leading-relaxed text-stone">
             Ob Produktanfrage, Vorbestellung, Presse oder einfach ein paar Worte
-            zur Marke — wir lesen jede Nachricht selbst und antworten persönlich.
+            zur Marke — wir freuen uns über jede Nachricht und antworten persönlich.
           </p>
           <div className="mt-10 border-t border-line pt-6">
             <p className={labelClass}>Direkt per E-Mail</p>
@@ -156,7 +157,7 @@ export default function Contact() {
               <div className="grid gap-6 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className={labelClass}>
-                    Name
+                    Name <span aria-hidden="true" className="text-cognac">*</span>
                   </label>
                   <input
                     id="name"
@@ -170,7 +171,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <label htmlFor="email" className={labelClass}>
-                    E-Mail
+                    E-Mail <span aria-hidden="true" className="text-cognac">*</span>
                   </label>
                   <input
                     id="email"
@@ -186,7 +187,7 @@ export default function Contact() {
 
               <div className="mt-6">
                 <label htmlFor="interesse" className={labelClass}>
-                  Dein Interesse
+                  Dein Anliegen <span aria-hidden="true" className="text-cognac">*</span>
                 </label>
                 <select
                   id="interesse"
@@ -208,7 +209,7 @@ export default function Contact() {
 
               <div className="mt-6">
                 <label htmlFor="message" className={labelClass}>
-                  Nachricht
+                  Nachricht <span aria-hidden="true" className="text-cognac">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -244,6 +245,10 @@ export default function Contact() {
                   Bearbeitung meiner Anfrage verarbeitet werden.
                 </label>
               </div>
+
+              <p className="mt-5 text-[0.72rem] text-stone/80">
+                <span aria-hidden="true" className="text-cognac">*</span> Pflichtfeld
+              </p>
 
               {status === "error" && (
                 <p

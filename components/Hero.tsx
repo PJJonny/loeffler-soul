@@ -30,8 +30,8 @@ export default function Hero() {
 
           <Reveal delay={240}>
             <p className="mt-7 max-w-prose text-base leading-relaxed text-stone sm:text-lg">
-              Handgefertigte Ledertaschen aus pflanzlich gegerbtem
-              Vollnarbenleder. Entworfen, um mit der Zeit persönlicher zu werden.
+              Handgefertigte Ledertaschen aus pflanzlich gegerbtem, nubukiertem
+              Rindleder. Entworfen, um mit der Zeit persönlicher zu werden.
             </p>
           </Reveal>
 
@@ -74,7 +74,7 @@ export default function Hero() {
               {/* HERO-BILD: /public/hero.jpg (Hochformat 3:4) */}
               <Image
                 src="/hero.jpg"
-                alt="Handgefertigte LOEFFLER SOUL Sling aus Vollnarbenleder, am Körper getragen"
+                alt="Handgefertigte LOEFFLER SOUL Sling aus nubukiertem Rindleder, am Körper getragen"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 45vw"

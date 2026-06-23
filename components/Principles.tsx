@@ -4,17 +4,17 @@ const PRINCIPLES: { n: string; title: string; text: string }[] = [
   {
     n: "I",
     title: "Ehrlich",
-    text: "Wir behaupten nichts, was wir nicht belegen können. Lieber sagen wir offen, wo wir heute stehen — und was noch nicht abschließend geklärt ist.",
+    text: "Wir sind der festen Überzeugung, dass Vertrauen durch Transparenz entsteht. Deshalb kommunizieren wir offen und nachvollziehbar über Materialien, Herkunft und Herstellung.",
   },
   {
     n: "II",
     title: "Langlebig",
-    text: "Gebaut, um über Jahre genutzt zu werden. Eine Tasche, die man behält, statt sie zu ersetzen — und die mit der Zeit besser zu einem passt.",
+    text: "Entwickelt, um über Jahre genutzt zu werden. Eine Tasche, die man behält, statt sie zu ersetzen — und die mit der Zeit ihren individuellen Charakter entwickelt.",
   },
   {
     n: "III",
     title: "Handgefertigt",
-    text: "Jede Tasche entsteht aktuell Schritt für Schritt in eigener Hand. Kein Fließband, keine anonyme Serie — sondern einzeln gefertigte Stücke.",
+    text: "Jede Tasche entsteht Schritt für Schritt in eigener Hand. Kein Fließband, keine Serienfertigung, dafür aber Unikate mit Charakter.",
   },
   {
     n: "IV",

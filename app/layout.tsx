@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     template: "%s — LOEFFLER SOUL",
   },
   description:
-    "Handgefertigte Ledertaschen aus pflanzlich gegerbtem Vollnarbenleder – die Sling als Bauchtasche und Crossbody, unisex, in kleinen Chargen am Bodensee gefertigt. Entworfen für Jahre, nicht für Saisons.",
+    "Handgefertigte Ledertaschen aus pflanzlich gegerbtem, nubukiertem Rindleder – die Sling als Bauchtasche und Crossbody, unisex, in kleinen Chargen am Bodensee gefertigt. Entworfen für Jahre, nicht für Saisons.",
   keywords: [
     "handgefertigte Ledertasche",
     "Sling Tasche Leder",
     "Bauchtasche Leder",
     "Crossbody Tasche unisex",
     "Ledertasche unisex",
-    "pflanzlich gegerbtes Vollnarbenleder",
+    "pflanzlich gegerbtes, nubukiertes Rindleder",
     "nachhaltige Ledertasche",
     "Lederwaren Manufaktur Bodensee",
     "handgemachte Tasche Konstanz",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     siteName: "LOEFFLER SOUL",
     title: "LOEFFLER SOUL – Handgefertigte Ledertaschen vom Bodensee",
     description:
-      "Die Sling aus pflanzlich gegerbtem Vollnarbenleder – als Bauchtasche und Crossbody, unisex. Handgefertigt in kleinen Chargen. Entworfen, um mit der Zeit persönlicher zu werden.",
+      "Die Sling aus pflanzlich gegerbtem, nubukiertem Rindleder – als Bauchtasche und Crossbody, unisex. Handgefertigt in kleinen Chargen. Entworfen, um mit der Zeit persönlicher zu werden.",
     images: [
       {
         url: "/og-image.jpg",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "LOEFFLER SOUL – Handgefertigte Ledertaschen vom Bodensee",
     description:
-      "Handgefertigte Ledertaschen aus pflanzlich gegerbtem Vollnarbenleder. Die Sling – unisex, als Bauchtasche und Crossbody.",
+      "Handgefertigte Ledertaschen aus pflanzlich gegerbtem, nubukiertem Rindleder. Die Sling – unisex, als Bauchtasche und Crossbody.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -107,7 +107,7 @@ const jsonLd = {
       email: "loefflersoul@gmail.com",
       slogan: "Handgefertigte Taschen mit Charakter.",
       description:
-        "Handgefertigte Ledertaschen aus pflanzlich gegerbtem Vollnarbenleder, in kleinen Chargen und eigener Handarbeit am Bodensee gefertigt.",
+        "Handgefertigte Ledertaschen aus pflanzlich gegerbtem, nubukiertem Rindleder, in kleinen Chargen und eigener Handarbeit am Bodensee gefertigt.",
       founder: { "@type": "Person", name: "Alina Loeffler" },
       areaServed: "DE",
       address: {
@@ -118,7 +118,7 @@ const jsonLd = {
       },
       knowsAbout: [
         "Lederverarbeitung",
-        "pflanzlich gegerbtes Vollnarbenleder",
+        "pflanzlich gegerbtes, nubukiertes Rindleder",
         "handgefertigte Taschen",
       ],
     },
@@ -135,9 +135,9 @@ const jsonLd = {
       name: "Die Sling",
       brand: { "@id": `${SITE_URL}/#brand` },
       category: "Ledertasche",
-      material: "Pflanzlich gegerbtes Vollnarbenleder",
+      material: "Pflanzlich gegerbtes, nubukiertes Rindleder",
       description:
-        "Kompakte Sling / Crossbody aus pflanzlich gegerbtem Vollnarbenleder in zwei Größen (Standard & Kompakt), unisex, handgefertigt in kleinen Chargen.",
+        "Kompakte Sling / Crossbody aus pflanzlich gegerbtem, nubukiertem Rindleder in zwei Größen (Standard & Kompakt), unisex, handgefertigt in kleinen Chargen.",
       image: [`${SITE_URL}/produkt-front.jpg`, `${SITE_URL}/getragen.jpg`],
       audience: { "@type": "PeopleAudience", suggestedGender: "unisex" },
       offers: [

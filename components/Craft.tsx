@@ -4,32 +4,32 @@ const STEPS: { n: string; title: string; text: string }[] = [
   {
     n: "01",
     title: "Zuschnitt",
-    text: "Jedes Teil wird einzeln aus der Haut geschnitten. Schon hier entscheidet sich, wie die Tasche später sitzt.",
+    text: "Jedes Teil wird einzeln aus der Haut geschnitten. Schon hier entscheidet sich, wie die Tasche später aussieht. Durch die individuelle Oberflächenstruktur des Leders entsteht bereits hier ein echtes Unikat.",
   },
   {
     n: "02",
     title: "Vorbereitung",
-    text: "Kanten anlegen, markieren, vorbereiten. Die ruhige Arbeit, die man später nicht sieht, aber spürt.",
+    text: "Kanten schärfen, umlegen und präzise vorbereiten. Hier entsteht die Grundlage für saubere Linien, exakte Passformen und die Qualität, die später überzeugt.",
   },
   {
     n: "03",
     title: "Nähen",
-    text: "Naht für Naht von Hand geführt — gleichmäßig, fest, ohne Eile.",
+    text: "Naht für Naht von Hand geführt — gleichmäßig und ohne Eile.",
   },
   {
     n: "04",
-    title: "Kanten & Details",
-    text: "Kanten werden gearbeitet, Beschläge gesetzt, Übergänge sauber gefasst.",
+    title: "Branding & Details",
+    text: "Die Tasche wird mit dem LOEFFLER SOUL Logo versehen, Beschläge eingearbeitet und Übergänge sauber erfasst.",
   },
   {
     n: "05",
-    title: "Endmontage",
-    text: "Die einzelnen Teile werden zusammengeführt. Aus Zuschnitten wird eine Tasche.",
+    title: "Sauberes Finish",
+    text: "Die einzelnen Teile werden zusammengeführt und die offenen Kanten gefärbt und versiegelt. Aus Zuschnitten wird eine fertige Tasche.",
   },
   {
     n: "06",
     title: "Finale Kontrolle",
-    text: "Jede Tasche wird einzeln geprüft, bevor sie das Atelier verlässt.",
+    text: "Jede Tasche wird einzeln geprüft, bevor sie das Atelier verlässt. Wir wollen sichergehen, dass die Qualität den höchsten Standards entspricht und die Erwartungen unserer Kunden erfüllt.",
   },
 ];
 
@@ -52,9 +52,8 @@ export default function Craft() {
           </Reveal>
           <Reveal delay={180}>
             <p className="mt-6 max-w-prose text-base leading-relaxed text-stone sm:text-lg">
-              Von der ersten Schnittlinie bis zur letzten Naht entsteht jede
-              Tasche aktuell in eigener Handarbeit — Schritt für Schritt,
-              einzeln, ohne Fließband.
+              Vom ersten Schnitt bis zur letzten Naht entsteht jede Tasche in
+              eigener Handarbeit — Schritt für Schritt, ohne Fließband.
             </p>
           </Reveal>
         </div>
@@ -80,8 +79,8 @@ export default function Craft() {
 
         <Reveal delay={150}>
           <p className="mt-8 text-[0.72rem] uppercase tracking-wide text-stone">
-            6–8 Stunden reine Handarbeit · 6 Arbeitsschritte · aktuell jede
-            Tasche von mir selbst gefertigt
+            6–8 Stunden reine Handarbeit · 6 Arbeitsschritte · jede Tasche von mir
+            selbst gefertigt
           </p>
         </Reveal>
       </div>

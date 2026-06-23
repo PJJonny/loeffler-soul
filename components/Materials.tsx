@@ -1,10 +1,11 @@
 import Reveal from "./Reveal";
 
 const FACTS: [string, string][] = [
-  ["Leder", "Pflanzlich gegerbtes Vollnarbenleder"],
-  ["Herkunft", "Rinder aus dem DACH-Raum"],
-  ["Bezug", "Ledermanufaktur Geiser Leder, Süddeutschland"],
-  ["Weitere Leder", "Ausgewählte Nubuk- & Büffelleder"],
+  ["Leder", "Pflanzlich gegerbtes, nubukiertes Rindleder"],
+  ["Gerbung", "Chromfrei, metallfrei, biologisch abbaubar"],
+  ["Herkunft", "Rohhäute aus Süddeutschland & Österreich"],
+  ["Bezug", "Geiser Leder (GREEN-GEISER-Linie), Süddeutschland"],
+  ["Weitere Leder", "Master Büffelnappa & geprägtes Büffelleder"],
   ["Beschläge", "Ausgewählte Metallbeschläge, robuster Reißverschluss"],
   ["Produktion", "Kleine Chargen, keine Massenproduktion"],
 ];
@@ -47,15 +48,17 @@ export default function Materials() {
           <Reveal delay={0} className="lg:col-span-7">
             <div className="space-y-5 text-base leading-relaxed text-ink/80">
               <p>
-                Die aktuelle Tasche entsteht aus pflanzlich gegerbtem
-                Vollnarbenleder mit natürlicher Oberfläche. Das Leder stammt von
-                Rindern aus dem DACH-Raum und wird über die süddeutsche
-                Ledermanufaktur Geiser Leder bezogen.
+                Die Sling entsteht aus pflanzlich gegerbtem, nubukiertem Rindleder
+                mit samtig-weicher, offenporiger Oberfläche. Es wird chromfrei,
+                metallfrei und ohne erdölbasierte Gerbstoffe hergestellt, ist
+                biologisch abbaubar und stammt aus der GREEN-GEISER-Linie
+                unseres süddeutschen Lederpartners Geiser Leder.
               </p>
               <p>
-                Die Herkunft ist regional nachvollziehbar — aktuell jedoch noch
-                nicht bis zum einzelnen Hof rückverfolgbar. Das sagen wir lieber
-                offen, als mehr zu behaupten, als wir sicher wissen.
+                Die Rohhäute stammen aus Süddeutschland und Österreich — bis zum
+                einzelnen Hof ist die Herkunft aktuell noch nicht rückverfolgbar.
+                Das sagen wir lieber offen, als mehr zu behaupten, als wir
+                sicher wissen.
               </p>
               <p>
                 Leder ist ein Nebenprodukt der Lebensmittelwirtschaft. Die Tiere
@@ -65,8 +68,9 @@ export default function Materials() {
                 Chargen und keine saisonale Wegwerfmode.
               </p>
               <p>
-                Je nach Kollektion verwenden wir zudem ausgewählte Nubuk- und
-                Büffelleder aus dem Sortiment von Geiser Leder.
+                Je nach Modell und Farbe verwenden wir zudem Master Büffelnappa und
+                geprägtes Büffelleder (Wild Star) — ebenfalls aus dem Sortiment
+                von Geiser Leder.
               </p>
             </div>
           </Reveal>
