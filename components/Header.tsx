@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 
 const NAV = [
-  { label: "Kollektion", href: "/#kollektion" },
+  { label: "Kollektion", href: "https://shop.loefflersoul.de" },
   { label: "Handwerk", href: "/#handwerk" },
   { label: "Materialien", href: "/#materialien" },
   { label: "Geschichte", href: "/#geschichte" },

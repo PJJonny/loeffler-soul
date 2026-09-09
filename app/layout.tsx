@@ -20,7 +20,7 @@ const body = Hanken_Grotesk({
   weight: ["300", "400", "500", "600"],
 });
 
-const SITE_URL = "https://loefflersoul.de";
+const SITE_URL = "https://www.loefflersoul.de";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -94,8 +94,9 @@ export const metadata: Metadata = {
   },
 };
 
-// Strukturierte Daten (helfen Google, Marke & Produkt zu verstehen).
-// Bewusst ohne Preis-/Kauf-Angebote, da es (noch) keinen Checkout gibt.
+// Strukturierte Daten (helfen Google, die Marke zu verstehen).
+// Bewusst ohne Produkt-/Preisangaben: Produkte, Preise und Verfügbarkeit
+// liegen im Shopify-Shop, der dafür eigene strukturierte Daten ausliefert.
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -104,7 +105,7 @@ const jsonLd = {
       "@id": `${SITE_URL}/#brand`,
       name: "LOEFFLER SOUL",
       url: SITE_URL,
-      email: "loefflersoul@gmail.com",
+      email: "info@loefflersoul.de",
       slogan: "Handgefertigte Taschen mit Charakter.",
       description:
         "Handgefertigte Ledertaschen aus pflanzlich gegerbtem, nubukiertem Rindleder, in kleinen Chargen und eigener Handarbeit am Bodensee gefertigt.",
@@ -116,6 +117,10 @@ const jsonLd = {
         addressRegion: "Baden-Württemberg",
         addressCountry: "DE",
       },
+      sameAs: [
+        "https://shop.loefflersoul.de",
+        "https://www.instagram.com/loefflersoul",
+      ],
       knowsAbout: [
         "Lederverarbeitung",
         "pflanzlich gegerbtes, nubukiertes Rindleder",
@@ -129,39 +134,6 @@ const jsonLd = {
       name: "LOEFFLER SOUL",
       inLanguage: "de-DE",
       publisher: { "@id": `${SITE_URL}/#brand` },
-    },
-    {
-      "@type": "Product",
-      name: "Die Sling",
-      brand: { "@id": `${SITE_URL}/#brand` },
-      category: "Ledertasche",
-      material: "Pflanzlich gegerbtes, nubukiertes Rindleder",
-      description:
-        "Kompakte Sling / Crossbody aus pflanzlich gegerbtem, nubukiertem Rindleder in zwei Größen (Standard & Kompakt), unisex, handgefertigt in kleinen Chargen.",
-      image: [`${SITE_URL}/produkt-front.jpg`, `${SITE_URL}/getragen.jpg`],
-      audience: { "@type": "PeopleAudience", suggestedGender: "unisex" },
-      offers: [
-        {
-          "@type": "Offer",
-          name: "Sling — Standard",
-          price: "429",
-          priceCurrency: "EUR",
-          availability: "https://schema.org/PreOrder",
-          itemCondition: "https://schema.org/NewCondition",
-          url: `${SITE_URL}/#kontakt`,
-          seller: { "@id": `${SITE_URL}/#brand` },
-        },
-        {
-          "@type": "Offer",
-          name: "Sling — Kompakt",
-          price: "349",
-          priceCurrency: "EUR",
-          availability: "https://schema.org/PreOrder",
-          itemCondition: "https://schema.org/NewCondition",
-          url: `${SITE_URL}/#kontakt`,
-          seller: { "@id": `${SITE_URL}/#brand` },
-        },
-      ],
     },
   ],
 };

@@ -6,26 +6,23 @@ import { useState } from "react";
   KONTAKTFORMULAR — Anbindung an Web3Forms (kein Backend nötig)
   ------------------------------------------------------------
   1. Konto erstellen: https://web3forms.com  (kostenlos)
-  2. Als Empfänger-E-Mail loefflersoul@gmail.com hinterlegen.
+  2. Als Empfänger-E-Mail info@loefflersoul.de hinterlegen.
   3. Den "Access Key" kopieren.
   4. Lege im Projekt eine Datei .env.local an und trage ein:
         NEXT_PUBLIC_WEB3FORMS_KEY=dein-access-key
      (Alternativ direkt unten in ACCESS_KEY_FALLBACK eintragen.)
 
   Hinweis: Mit Web3Forms gehen alle Anfragen automatisch an die
-  im Dashboard hinterlegte Adresse (loefflersoul@gmail.com).
+  im Dashboard hinterlegte Adresse (info@loefflersoul.de).
   Eine Formspree-Alternative findest du in der README.
 */
 
-const ACCESS_KEY_FALLBACK = "DEIN-WEB3FORMS-ACCESS-KEY";
+const ACCESS_KEY_FALLBACK = "00beb058-fe7f-490b-a108-b20a3b24f92d";
 const ACCESS_KEY =
   process.env.NEXT_PUBLIC_WEB3FORMS_KEY || ACCESS_KEY_FALLBACK;
 
 const INTERESSEN = [
-  "Vorbestellung – Sling (Standard)",
-  "Vorbestellung – Sling (Kompakt)",
-  "Vorbestellung – Luna",
-  "Produktanfrage",
+  "Produktanfrage / Sonderfertigung",
   "Presse / Kooperation",
   "Sonstiges",
 ];
@@ -45,7 +42,7 @@ export default function Contact() {
     const data = new FormData(form);
 
     // Sicherheitsnetz, falls der Key noch nicht gesetzt wurde
-    if (ACCESS_KEY === ACCESS_KEY_FALLBACK) {
+    if (!ACCESS_KEY || ACCESS_KEY === "DEIN-WEB3FORMS-ACCESS-KEY") {
       setStatus("error");
       setErrorMsg(
         "Das Formular ist noch nicht verbunden. Bitte trage deinen Web3Forms-Access-Key ein (siehe README)."
@@ -110,16 +107,27 @@ export default function Contact() {
             Schreib uns.
           </h2>
           <p className="mt-6 max-w-prose text-base leading-relaxed text-stone">
-            Ob Produktanfrage, Vorbestellung, Presse oder einfach ein paar Worte
+            Ob Produktanfrage, Sonderfertigung, Presse oder einfach ein paar Worte
             zur Marke — wir freuen uns über jede Nachricht und antworten persönlich.
           </p>
           <div className="mt-10 border-t border-line pt-6">
             <p className={labelClass}>Direkt per E-Mail</p>
             <a
-              href="mailto:loefflersoul@gmail.com"
+              href="mailto:info@loefflersoul.de"
               className="link-underline mt-2 inline-block font-display text-xl text-ink"
             >
-              loefflersoul@gmail.com
+              info@loefflersoul.de
+            </a>
+          </div>
+          <div className="mt-8 border-t border-line pt-6">
+            <p className={labelClass}>Instagram</p>
+            <a
+              href="https://www.instagram.com/loefflersoul?stkn=amN0YWs4d25veDEx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline mt-2 inline-block font-display text-xl text-ink"
+            >
+              @loefflersoul
             </a>
           </div>
         </div>

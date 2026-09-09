@@ -33,8 +33,8 @@ export default function ImpressumPage() {
       <section>
         <Label>Kontakt</Label>
         <p>
-          <a href="mailto:loefflersoul@gmail.com" className="link-underline text-ink">
-            loefflersoul@gmail.com
+          <a href="mailto:info@loefflersoul.de" className="link-underline text-ink">
+            info@loefflersoul.de
           </a>
         </p>
       </section>

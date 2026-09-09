@@ -1,11 +1,11 @@
 import Reveal from "./Reveal";
 
 const FACTS: [string, string][] = [
-  ["Leder", "Pflanzlich gegerbtes, nubukiertes Rindleder"],
-  ["Gerbung", "Chromfrei, metallfrei, biologisch abbaubar"],
-  ["Herkunft", "Rohhäute aus Süddeutschland & Österreich"],
-  ["Bezug", "Geiser Leder (GREEN-GEISER-Linie), Süddeutschland"],
+  ["Leder", "Sorgfältig ausgewählte Lederarten, modellabhängig"],
+  ["Hauptleder", "Pflanzlich gegerbtes, nubukiertes Rindleder"],
   ["Weitere Leder", "Master Büffelnappa & geprägtes Büffelleder"],
+  ["Gerbung", "Je nach Lederart – siehe Produktbeschreibung"],
+  ["Herkunft", "Bezug über einen Großhändler in Süddeutschland"],
   ["Beschläge", "Ausgewählte Metallbeschläge, robuster Reißverschluss"],
   ["Produktion", "Kleine Chargen, keine Massenproduktion"],
 ];
@@ -48,29 +48,39 @@ export default function Materials() {
           <Reveal delay={0} className="lg:col-span-7">
             <div className="space-y-5 text-base leading-relaxed text-ink/80">
               <p>
-                Die Sling entsteht aus pflanzlich gegerbtem, nubukiertem Rindleder
-                mit samtig-weicher, offenporiger Oberfläche. Es wird chromfrei,
-                metallfrei und ohne erdölbasierte Gerbstoffe hergestellt, ist
-                biologisch abbaubar und stammt aus der GREEN-GEISER-Linie
-                unseres süddeutschen Lederpartners Geiser Leder.
+                Für unsere Taschen verwenden wir sorgfältig ausgewählte Leder,
+                die wir ausschließlich über einen süddeutschen Großhändler
+                beziehen. Je nach Modell und Farbe kommen unterschiedliche
+                Lederarten zum Einsatz – darunter pflanzlich gegerbtes,
+                nubukiertes Rindleder, Master Büffelnappa sowie geprägtes
+                Büffelleder. Welches Leder bei der jeweiligen Tasche verwendet
+                wird, ist in der Produktbeschreibung im Shop genau angegeben.
               </p>
               <p>
-                Die Rohhäute stammen aus Süddeutschland und Österreich — bis zum
-                einzelnen Hof ist die Herkunft aktuell noch nicht rückverfolgbar.
-                Das sagen wir lieber offen, als mehr zu behaupten, als wir
-                sicher wissen.
+                Der größte Teil unserer Produkte entsteht aus pflanzlich
+                gegerbtem Rindleder mit samtig-weicher, offenporiger Oberfläche
+                und integriertem Fleckschutz für besondere Langlebigkeit. Es
+                wird chromfrei, metallfrei und ohne erdölbasierte Gerbstoffe
+                hergestellt und ist biologisch abbaubar.
               </p>
               <p>
-                Leder ist ein Nebenprodukt der Lebensmittelwirtschaft. Die Tiere
-                werden nicht ausschließlich für Leder gehalten; wir nutzen ein
-                bereits vorhandenes Material so sinnvoll wie möglich. Für uns
-                bedeutet bewusster Umgang vor allem: Langlebigkeit, kleine
-                Chargen und keine saisonale Wegwerfmode.
+                Das von uns verwendete Leder entsteht als Nebenprodukt der
+                Lebensmittelindustrie – die Tiere werden nicht eigens für die
+                Ledergewinnung gehalten. Wir verarbeiten damit einen bereits
+                vorhandenen natürlichen Rohstoff zu Produkten, die darauf
+                ausgelegt sind, über viele Jahre getragen und genutzt zu
+                werden.
               </p>
               <p>
-                Je nach Modell und Farbe verwenden wir zudem Master Büffelnappa und
-                geprägtes Büffelleder (Wild Star) — ebenfalls aus dem Sortiment
-                von Geiser Leder.
+                Leder ist ein natürliches, besonders langlebiges Material.
+                Gerade diese lange Nutzungsdauer ist für uns ein wesentlicher
+                Teil eines bewussten Umgangs mit Ressourcen: Wir möchten
+                Taschen schaffen, die nicht nach einer Saison ersetzt werden,
+                sondern mit der Zeit ihren eigenen Charakter entwickeln.
+              </p>
+              <p>
+                Jedes Leder bringt dabei seine eigene Haptik, Struktur und ein
+                individuelles Erscheinungsbild mit.
               </p>
             </div>
           </Reveal>

@@ -38,10 +38,10 @@ export default function Hero() {
           <Reveal delay={360}>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
               <a
-                href="#kollektion"
+                href="#handwerk"
                 className="group inline-flex items-center justify-center gap-3 bg-ink px-8 py-4 text-[0.74rem] uppercase tracking-eyebrow text-cream transition-colors duration-300 hover:bg-espresso"
               >
-                Erste Kollektion entdecken
+                Unser Handwerk entdecken
                 <span className="transition-transform duration-300 ease-soft group-hover:translate-x-1">
                   →
                 </span>
@@ -56,38 +56,22 @@ export default function Hero() {
           </Reveal>
         </div>
 
-        {/* Hauptvisual – klickbar: öffnet die Bilder der Sling Standard */}
+        {/* Hauptvisual */}
         <Reveal delay={200} className="order-1 lg:order-2">
-          <button
-            type="button"
-            onClick={() =>
-              window.dispatchEvent(
-                new CustomEvent("loeffler:open-gallery", {
-                  detail: { size: "Standard", index: 0 },
-                })
-              )
-            }
-            className="group block w-full cursor-zoom-in text-left"
-            aria-label="Bilder der Sling Standard ansehen"
-          >
-            <figure className="relative aspect-[3/4] w-full overflow-hidden bg-sand">
-              {/* HERO-BILD: /public/hero.jpg (Hochformat 3:4) */}
-              <Image
-                src="/hero.jpg"
-                alt="Handgefertigte LOEFFLER SOUL Sling aus nubukiertem Rindleder, am Körper getragen"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="img-zoom object-cover"
-              />
-              <figcaption className="absolute bottom-4 left-4 rounded-full bg-cream/80 px-4 py-1.5 text-[0.62rem] uppercase tracking-eyebrow text-ink backdrop-blur-sm">
-                No. 01 — Die Sling · Standard
-              </figcaption>
-              <span className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-ink/70 px-3 py-1.5 text-[0.6rem] uppercase tracking-eyebrow text-cream opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
-                Bilder ansehen
-              </span>
-            </figure>
-          </button>
+          <figure className="relative aspect-[3/4] w-full overflow-hidden bg-sand">
+            {/* HERO-BILD: /public/hero.jpg (Hochformat 3:4) */}
+            <Image
+              src="/hero.jpg"
+              alt="Handgefertigte LOEFFLER SOUL Sling aus nubukiertem Rindleder, am Körper getragen"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="object-cover"
+            />
+            <figcaption className="absolute bottom-4 left-4 rounded-full bg-cream/80 px-4 py-1.5 text-[0.62rem] uppercase tracking-eyebrow text-ink backdrop-blur-sm">
+              Die Sling · Standard
+            </figcaption>
+          </figure>
         </Reveal>
       </div>
     </section>

@@ -1,6 +1,5 @@
 
 const LINKS = [
-  { label: "Kollektion", href: "/#kollektion" },
   { label: "Handwerk", href: "/#handwerk" },
   { label: "Materialien", href: "/#materialien" },
   { label: "Geschichte", href: "/#geschichte" },
@@ -28,10 +27,10 @@ export default function Footer() {
               Handgefertigte Taschen mit Charakter.
             </p>
             <a
-              href="mailto:loefflersoul@gmail.com"
+              href="mailto:info@loefflersoul.de"
               className="link-underline mt-6 inline-block text-sm text-cream/70"
             >
-              loefflersoul@gmail.com
+              info@loefflersoul.de
             </a>
           </div>
 

@@ -27,8 +27,8 @@ export default function DatenschutzPage() {
         <Label>Verantwortlicher</Label>
         <p>
           Alina Loeffler · Tägermoosstrasse 23a, 78462 Konstanz, Deutschland ·{" "}
-          <a href="mailto:loefflersoul@gmail.com" className="link-underline text-ink">
-            loefflersoul@gmail.com
+          <a href="mailto:info@loefflersoul.de" className="link-underline text-ink">
+            info@loefflersoul.de
           </a>
         </p>
       </section>

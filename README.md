@@ -90,7 +90,7 @@ Das Formular funktioniert **ohne eigenen Server**. Empfohlen ist **Web3Forms**
 E-Mail-Postfach.
 
 1. Konto anlegen auf <https://web3forms.com> und
-   `loefflersoul@gmail.com` als Empfängeradresse hinterlegen.
+   `info@loefflersoul.de` als Empfängeradresse hinterlegen.
 2. Den **Access Key** kopieren.
 3. Im Projekt eine Datei **`.env.local`** anlegen (neben `package.json`) mit:
 

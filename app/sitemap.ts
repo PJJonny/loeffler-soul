@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://loefflersoul.de";
+const SITE_URL = "https://www.loefflersoul.de";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
