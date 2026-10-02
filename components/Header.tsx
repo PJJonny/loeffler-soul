@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import { SHOP_LINKS } from "@/lib/shop";
 
 const NAV = [
-  { label: "Shop", href: SHOP_LINKS.navigation },
+  { label: "Kollektion", href: "/#kollektion" },
   { label: "Handwerk", href: "/#handwerk" },
   { label: "Materialien", href: "/#materialien" },
   { label: "Geschichte", href: "/#geschichte" },

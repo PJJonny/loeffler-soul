@@ -49,7 +49,6 @@ export function shopLink(platzierung: string, pfad: string = GESAMTKOLLEKTION): 
 
 /** Alle Shop-Links der Website – jeder mit eigener Platzierung */
 export const SHOP_LINKS = {
-  navigation: shopLink("navigation"),
   headerButton: shopLink("header-button"),
   menueButton: shopLink("menue-button"),
   heroButton: shopLink("hero-button"),
@@ -61,7 +60,6 @@ export const SHOP_LINKS = {
   versandkosten: shopLink("versandkosten", "/policies/shipping-policy"),
   kontakt: shopLink("kontakt"),
   footerButton: shopLink("footer-button"),
-  footerNavigation: shopLink("footer-navigation"),
 };
 
 /** Instagram-Profil von LOEFFLER SOUL */

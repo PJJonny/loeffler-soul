@@ -1,7 +1,7 @@
 import { INSTAGRAM_URL, SHOP_LINKS } from "@/lib/shop";
 
 const LINKS = [
-  { label: "Shop", href: SHOP_LINKS.footerNavigation },
+  { label: "Kollektion", href: "/#kollektion" },
   { label: "Handwerk", href: "/#handwerk" },
   { label: "Materialien", href: "/#materialien" },
   { label: "Geschichte", href: "/#geschichte" },
