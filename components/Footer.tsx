@@ -1,5 +1,7 @@
+import { INSTAGRAM_URL, SHOP_LINKS } from "@/lib/shop";
 
 const LINKS = [
+  { label: "Shop", href: SHOP_LINKS.footerNavigation },
   { label: "Handwerk", href: "/#handwerk" },
   { label: "Materialien", href: "/#materialien" },
   { label: "Geschichte", href: "/#geschichte" },
@@ -10,6 +12,7 @@ const LEGAL = [
   { label: "Impressum", href: "/impressum" },
   { label: "Datenschutz", href: "/datenschutz" },
   { label: "Kontakt", href: "/#kontakt" },
+  { label: "Instagram", href: INSTAGRAM_URL, external: true },
 ];
 
 export default function Footer() {
@@ -32,6 +35,20 @@ export default function Footer() {
             >
               info@loefflersoul.de
             </a>
+            <div className="mt-8">
+              <a
+                href={SHOP_LINKS.footerButton}
+                className="group inline-flex items-center gap-3 border border-cream/30 px-6 py-3 text-[0.7rem] uppercase tracking-eyebrow text-cream transition-colors duration-300 hover:border-cream hover:bg-cream hover:text-espresso"
+              >
+                Zum Shop
+                <span
+                  aria-hidden="true"
+                  className="transition-transform duration-300 ease-soft group-hover:translate-x-1"
+                >
+                  →
+                </span>
+              </a>
+            </div>
           </div>
 
           {/* Navigation */}
@@ -63,6 +80,9 @@ export default function Footer() {
                 <li key={l.label}>
                   <a
                     href={l.href}
+                    {...(l.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                     className="link-underline text-sm text-cream/80"
                   >
                     {l.label}

@@ -1,6 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
+import {
+  OG_IMAGE,
+  OPEN_GRAPH,
+  SHARE_DESCRIPTION,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_URL,
+  STRUCTURED_DATA,
+} from "@/lib/site";
 
 // Display-Schrift: Playfair Display – elegante Editorial-Serife mit
 // senkrechter Achse (wirkt aufrecht/gerade), passt zum Logo-Schriftzug.
@@ -20,57 +30,39 @@ const body = Hanken_Grotesk({
   weight: ["300", "400", "500", "600"],
 });
 
-const SITE_URL = "https://www.loefflersoul.de";
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "LOEFFLER SOUL – Handgefertigte Ledertaschen vom Bodensee",
+    default: SITE_TITLE,
     template: "%s — LOEFFLER SOUL",
   },
-  description:
-    "Handgefertigte Ledertaschen aus pflanzlich gegerbtem, nubukiertem Rindleder – die Sling als Bauchtasche und Crossbody, unisex, in kleinen Chargen am Bodensee gefertigt. Entworfen für Jahre, nicht für Saisons.",
+  description: SITE_DESCRIPTION,
+  // Von Google kaum noch genutzt, schadet aber nicht.
   keywords: [
     "handgefertigte Ledertasche",
+    "Ledertasche handgemacht",
+    "Sling Bag Leder",
     "Sling Tasche Leder",
     "Bauchtasche Leder",
-    "Crossbody Tasche unisex",
+    "Crossbody Tasche Leder",
     "Ledertasche unisex",
-    "pflanzlich gegerbtes, nubukiertes Rindleder",
-    "nachhaltige Ledertasche",
-    "Lederwaren Manufaktur Bodensee",
-    "handgemachte Tasche Konstanz",
-    "Bauchtasche Herren Damen",
+    "Ledertasche Unikat",
+    "Ledertasche Bodensee",
+    "Ledertasche Konstanz",
   ],
-  applicationName: "LOEFFLER SOUL",
-  authors: [{ name: "LOEFFLER SOUL" }],
+  applicationName: SITE_NAME,
+  authors: [{ name: "Alina Loeffler", url: SITE_URL }],
   creator: "Alina Loeffler",
-  publisher: "LOEFFLER SOUL",
+  publisher: SITE_NAME,
   category: "Lederwaren",
-  alternates: { canonical: SITE_URL },
-  openGraph: {
-    type: "website",
-    locale: "de_DE",
-    url: SITE_URL,
-    siteName: "LOEFFLER SOUL",
-    title: "LOEFFLER SOUL – Handgefertigte Ledertaschen vom Bodensee",
-    description:
-      "Die Sling aus pflanzlich gegerbtem, nubukiertem Rindleder – als Bauchtasche und Crossbody, unisex. Handgefertigt in kleinen Chargen. Entworfen, um mit der Zeit persönlicher zu werden.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "LOEFFLER SOUL – handgefertigte Ledertaschen, die Sling",
-      },
-    ],
-  },
+  // Canonical & og:url setzt jede Seite selbst (siehe app/page.tsx),
+  // damit Unterseiten nicht auf die Startseite verweisen.
+  openGraph: OPEN_GRAPH,
   twitter: {
     card: "summary_large_image",
-    title: "LOEFFLER SOUL – Handgefertigte Ledertaschen vom Bodensee",
-    description:
-      "Handgefertigte Ledertaschen aus pflanzlich gegerbtem, nubukiertem Rindleder. Die Sling – unisex, als Bauchtasche und Crossbody.",
-    images: ["/og-image.jpg"],
+    title: SITE_TITLE,
+    description: SHARE_DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
   robots: {
     index: true,
@@ -83,6 +75,8 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  // Verhindert, dass iOS Maße oder Zahlen als Telefonnummern verlinkt
+  formatDetection: { telephone: false, address: false, email: false },
   icons: {
     // Vorgenerierte Flammen-Icons (Cremehintergrund + Cognac-Flamme).
     // Zum Ersetzen einfach die Dateien in /public überschreiben.
@@ -92,50 +86,6 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-touch-icon.png",
   },
-};
-
-// Strukturierte Daten (helfen Google, die Marke zu verstehen).
-// Bewusst ohne Produkt-/Preisangaben: Produkte, Preise und Verfügbarkeit
-// liegen im Shopify-Shop, der dafür eigene strukturierte Daten ausliefert.
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": ["Organization", "Brand"],
-      "@id": `${SITE_URL}/#brand`,
-      name: "LOEFFLER SOUL",
-      url: SITE_URL,
-      email: "info@loefflersoul.de",
-      slogan: "Handgefertigte Taschen mit Charakter.",
-      description:
-        "Handgefertigte Ledertaschen aus pflanzlich gegerbtem, nubukiertem Rindleder, in kleinen Chargen und eigener Handarbeit am Bodensee gefertigt.",
-      founder: { "@type": "Person", name: "Alina Loeffler" },
-      areaServed: "DE",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Konstanz",
-        addressRegion: "Baden-Württemberg",
-        addressCountry: "DE",
-      },
-      sameAs: [
-        "https://shop.loefflersoul.de",
-        "https://www.instagram.com/loefflersoul",
-      ],
-      knowsAbout: [
-        "Lederverarbeitung",
-        "pflanzlich gegerbtes, nubukiertes Rindleder",
-        "handgefertigte Taschen",
-      ],
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
-      url: SITE_URL,
-      name: "LOEFFLER SOUL",
-      inLanguage: "de-DE",
-      publisher: { "@id": `${SITE_URL}/#brand` },
-    },
-  ],
 };
 
 // Mobile/iOS/Android: korrektes Skalieren, Theme-Farbe, Safe-Areas (Notch).
@@ -162,7 +112,7 @@ export default function RootLayout({
         {children}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(STRUCTURED_DATA) }}
         />
       </body>
     </html>

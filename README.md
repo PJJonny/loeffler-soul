@@ -42,10 +42,9 @@ Dateien durch deine eigenen Fotos und behalte die Dateinamen bei.**
 | Datei in `/public`   | Bereich der Seite              | Empfohlenes Format | Empfohlenes Foto                              |
 | -------------------- | ------------------------------ | ------------------ | --------------------------------------------- |
 | `hero.jpg`           | Großes Bild ganz oben (Hero)   | Hochformat ~3:4    | Tasche am Körper getragen (stimmungsvoll)     |
-| `produkt-front.jpg`  | Erste Kollektion, Hauptbild    | Querformat ~4:3    | Freisteller/Produktfoto der Tasche            |
-| `produkt-detail.jpg` | Patina-Abschnitt + Detailzeile | Quadrat 1:1        | Nahaufnahme: Leder, Prägung, Reißverschluss   |
-| `getragen.jpg`       | Detailzeile „getragen"         | Hochformat ~3:4    | Person mit Tasche, Ganzkörper/halb            |
-| `innen.jpg`          | Detailzeile „Innenleben"       | Querformat ~4:3    | Blick in die Tasche / Zugriff aufs Innenfach  |
+| `sling-beige.jpg`    | Kollektion: Karte „Kompakt"    | Querformat 4:3     | Freigestelltes Produktfoto auf Creme          |
+| `sling-braun.jpg`    | Kollektion: Karte „Standard"   | Querformat 4:3     | Freigestelltes Produktfoto auf Creme          |
+| `kenia.jpg`          | Geschichte                     | Hochformat ~4:5    | Foto zur Gründungsgeschichte                  |
 | `og-image.jpg`       | Vorschaubild beim Teilen       | Querformat 1200×630| Stärkstes Produktfoto (wird bei Links gezeigt)|
 
 So gehst du vor:
@@ -158,8 +157,10 @@ Falls du lieber Formspree nutzt:
 | Texte der Abschnitte        | jeweilige Datei in `components/`              |
 | Gründer-Signatur            | `components/Story.tsx` (Platzhalter `Gründer`)|
 | Navigation / CTA            | `components/Header.tsx`                       |
-| Produkt-Spezifikationen     | `components/Collection.tsx`                   |
-| SEO-Titel, Beschreibung, OG | `app/layout.tsx`                              |
+| Shop- & Instagram-Links, Tracking | `lib/shop.ts`                           |
+| „ab"-Preis der Kollektion   | `lib/shop.ts` (`AB_PREIS`)                    |
+| Kollektion (Karten, Maße)   | `components/Collection.tsx`                   |
+| Google: Titel, Beschreibung, Vorschaubild, strukturierte Daten | `lib/site.ts` |
 | Farben & Schriften          | `app/globals.css` + `tailwind.config.ts`      |
 | Impressum / Datenschutz     | `app/impressum/`, `app/datenschutz/`          |
 
@@ -170,6 +171,29 @@ Falls du lieber Formspree nutzt:
 
 ---
 
+## 6. Google & Tracking
+
+**Suchmaschinen.** Titel, Beschreibung, Vorschaubild und strukturierte Daten
+stehen zentral in `lib/site.ts`. Die Seite liefert automatisch
+`/robots.txt` und `/sitemap.xml` aus. Impressum und Datenschutz sind für
+Besucher erreichbar, aber bewusst nicht in Google (noindex).
+
+Einmalig in der [Google Search Console](https://search.google.com/search-console):
+
+1. Property-Typ **Domain** wählen, `loefflersoul.de` eintragen und per
+   DNS-Eintrag (TXT) beim Domain-Anbieter bestätigen. Das deckt Website
+   *und* Shop ab.
+2. Unter *Sitemaps* `https://www.loefflersoul.de/sitemap.xml` und
+   `https://shop.loefflersoul.de/sitemap.xml` einreichen.
+
+**Tracking (UTM).** Jeder Link von der Website in den Shop trägt
+`utm_source=loefflersoul.de` und mit `utm_content` die Stelle, an der
+geklickt wurde (z. B. `hero-button`, `kollektion-kompakt`). In Shopify
+erscheinen diese Besuche unter der Quelle „loefflersoul.de". Alle Links
+entstehen in `lib/shop.ts` (`SHOP_LINKS`).
+
+---
+
 ## Projektstruktur
 
 ```
@@ -177,8 +201,12 @@ app/
   layout.tsx          Grundgerüst, Schriften, SEO/OG, strukturierte Daten
   page.tsx            Setzt alle Abschnitte zusammen
   globals.css         Designtokens (Farben), Basis-Styles, Animationen
-  impressum/page.tsx  Platzhalterseite
-  datenschutz/page.tsx Platzhalterseite
+  impressum/page.tsx  Impressum (noindex)
+  datenschutz/page.tsx Datenschutz (noindex)
+  robots.ts           Erzeugt /robots.txt
+  sitemap.ts          Erzeugt /sitemap.xml
 components/            Alle Seitenabschnitte (Header, Hero, … , Footer)
+lib/shop.ts           Shop- & Instagram-Links, Tracking, „ab"-Preis
+lib/site.ts           Google-Angaben: Titel, Beschreibung, strukturierte Daten
 public/               Bilder, Logo-Optionen, Favicon
 ```

@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import LegalShell from "@/components/LegalShell";
 
+// Für Besucher immer über den Footer erreichbar, aber nicht in Google;
+// Links werden weiter verfolgt.
 export const metadata: Metadata = {
-  title: "Datenschutz – LOEFFLER SOUL",
-  robots: { index: false, follow: false },
+  title: "Datenschutz",
+  description: "Datenschutzhinweise von LOEFFLER SOUL.",
+  alternates: { canonical: "/datenschutz" },
+  robots: { index: false, follow: true },
 };
 
 function Label({ children }: { children: React.ReactNode }) {

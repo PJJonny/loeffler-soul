@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, SHOP_LINKS } from "@/lib/shop";
 
 /*
   KONTAKTFORMULAR — Anbindung an Web3Forms (kein Backend nötig)
@@ -22,7 +23,8 @@ const ACCESS_KEY =
   process.env.NEXT_PUBLIC_WEB3FORMS_KEY || ACCESS_KEY_FALLBACK;
 
 const INTERESSEN = [
-  "Produktanfrage / Sonderfertigung",
+  "Sonderanfertigung",
+  "Frage zu einer Tasche",
   "Presse / Kooperation",
   "Sonstiges",
 ];
@@ -107,8 +109,16 @@ export default function Contact() {
             Schreib uns.
           </h2>
           <p className="mt-6 max-w-prose text-base leading-relaxed text-stone">
-            Ob Produktanfrage, Sonderfertigung, Presse oder einfach ein paar Worte
-            zur Marke — wir freuen uns über jede Nachricht und antworten persönlich.
+            Fertige Taschen findest du direkt{" "}
+            <a
+              href={SHOP_LINKS.kontakt}
+              className="text-ink underline decoration-ink/30 underline-offset-4 transition-colors duration-300 hover:decoration-ink"
+            >
+              im Shop
+            </a>
+            . Für Sonderanfertigungen, Fragen zu einer Tasche, Presse oder
+            einfach ein paar Worte zur Marke — wir freuen uns über jede Nachricht
+            und antworten persönlich.
           </p>
           <div className="mt-10 border-t border-line pt-6">
             <p className={labelClass}>Direkt per E-Mail</p>
@@ -122,12 +132,12 @@ export default function Contact() {
           <div className="mt-8 border-t border-line pt-6">
             <p className={labelClass}>Instagram</p>
             <a
-              href="https://www.instagram.com/loefflersoul?stkn=amN0YWs4d25veDEx"
+              href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="link-underline mt-2 inline-block font-display text-xl text-ink"
             >
-              @loefflersoul
+              {INSTAGRAM_HANDLE}
             </a>
           </div>
         </div>
@@ -147,7 +157,7 @@ export default function Contact() {
                 onClick={() => setStatus("idle")}
                 className="link-underline mt-8 text-[0.78rem] uppercase tracking-wide text-ink"
               >
-                Weitere Anfrage senden
+                Weitere Nachricht senden
               </button>
             </div>
           ) : (
@@ -272,12 +282,11 @@ export default function Contact() {
                 disabled={status === "loading"}
                 className="mt-8 inline-flex w-full items-center justify-center gap-3 bg-ink px-8 py-4 text-[0.74rem] uppercase tracking-eyebrow text-cream transition-colors duration-300 hover:bg-espresso disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
               >
-                {status === "loading" ? "Wird gesendet …" : "Anfrage senden"}
+                {status === "loading" ? "Wird gesendet …" : "Nachricht senden"}
               </button>
 
               <p className="mt-4 text-[0.75rem] leading-relaxed text-stone/80">
-                Deine Anfrage ist unverbindlich — es entsteht dadurch kein
-                Kaufvertrag. Wir melden uns persönlich bei dir.
+                Anfragen sind unverbindlich. Wir melden uns persönlich bei dir.
               </p>
             </form>
           )}

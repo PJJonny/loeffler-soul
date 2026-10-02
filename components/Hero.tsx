@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Reveal from "./Reveal";
+import { SHOP_LINKS } from "@/lib/shop";
 
 export default function Hero() {
   return (
@@ -36,42 +37,69 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={360}>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-9">
+              {/* Primär: der Weg in den Shop */}
               <a
-                href="#handwerk"
+                href={SHOP_LINKS.heroButton}
                 className="group inline-flex items-center justify-center gap-3 bg-ink px-8 py-4 text-[0.74rem] uppercase tracking-eyebrow text-cream transition-colors duration-300 hover:bg-espresso"
               >
-                Unser Handwerk entdecken
-                <span className="transition-transform duration-300 ease-soft group-hover:translate-x-1">
+                Zum Shop
+                <span
+                  aria-hidden="true"
+                  className="transition-transform duration-300 ease-soft group-hover:translate-x-1"
+                >
                   →
                 </span>
               </a>
-              <a
-                href="#kontakt"
-                className="link-underline self-center text-[0.78rem] uppercase tracking-wide text-ink"
-              >
-                Kontakt aufnehmen
-              </a>
+
+              {/* Sekundär: dezent, für alle, die erst mehr wissen wollen */}
+              <div className="flex items-center justify-center gap-7 sm:justify-start">
+                <a
+                  href="#handwerk"
+                  className="link-underline text-[0.74rem] uppercase tracking-wide text-ink/70 transition-colors duration-300 hover:text-ink"
+                >
+                  Handwerk entdecken
+                </a>
+                <a
+                  href="#kontakt"
+                  className="link-underline text-[0.74rem] uppercase tracking-wide text-ink/70 transition-colors duration-300 hover:text-ink"
+                >
+                  Kontakt aufnehmen
+                </a>
+              </div>
             </div>
           </Reveal>
         </div>
 
         {/* Hauptvisual */}
         <Reveal delay={200} className="order-1 lg:order-2">
-          <figure className="relative aspect-[3/4] w-full overflow-hidden bg-sand">
-            {/* HERO-BILD: /public/hero.jpg (Hochformat 3:4) */}
-            <Image
-              src="/hero.jpg"
-              alt="Handgefertigte LOEFFLER SOUL Sling aus nubukiertem Rindleder, am Körper getragen"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="object-cover"
-            />
-            <figcaption className="absolute bottom-4 left-4 rounded-full bg-cream/80 px-4 py-1.5 text-[0.62rem] uppercase tracking-eyebrow text-ink backdrop-blur-sm">
-              Die Sling · Standard
-            </figcaption>
-          </figure>
+          {/* Bild + Plakette führen in die Kollektion im Shop */}
+          <a
+            href={SHOP_LINKS.heroBild}
+            aria-label="Die Sling im Shop ansehen"
+            className="group block"
+          >
+            <figure className="relative aspect-[3/4] w-full overflow-hidden bg-sand">
+              {/* HERO-BILD: /public/hero.jpg (Hochformat 3:4) */}
+              <Image
+                src="/hero.jpg"
+                alt="Handgefertigte LOEFFLER SOUL Sling aus nubukiertem Rindleder, am Körper getragen"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="img-zoom object-cover"
+              />
+              <figcaption className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-cream/85 px-4 py-1.5 text-[0.62rem] uppercase tracking-eyebrow text-ink backdrop-blur-sm transition-colors duration-300 group-hover:bg-ink group-hover:text-cream">
+                Die Sling · Standard
+                <span
+                  aria-hidden="true"
+                  className="transition-transform duration-300 ease-soft group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
+              </figcaption>
+            </figure>
+          </a>
         </Reveal>
       </div>
     </section>

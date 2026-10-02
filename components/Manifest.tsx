@@ -12,9 +12,9 @@ export default function Manifest() {
     <section className="border-y border-line bg-sand">
       <div className="mx-auto max-w-4xl px-5 py-24 text-center sm:px-8 lg:py-32">
         <Reveal>
-          <p className="mb-10 text-[0.7rem] uppercase tracking-eyebrow text-cognac-deep">
+          <h2 className="mb-10 text-[0.7rem] uppercase tracking-eyebrow text-cognac-deep">
             Das Versprechen
-          </p>
+          </h2>
         </Reveal>
         <div className="space-y-3 sm:space-y-4">
           {LINES.map((line, i) => (

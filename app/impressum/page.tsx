@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import LegalShell from "@/components/LegalShell";
 
+// Für Besucher immer über den Footer erreichbar. Nicht in Google, damit die
+// Anschrift nicht in Suchergebnissen auftaucht; Links werden weiter verfolgt.
 export const metadata: Metadata = {
   title: "Impressum",
   description: "Impressum und Anbieterkennzeichnung von LOEFFLER SOUL.",
-  alternates: { canonical: "https://loefflersoul.de/impressum" },
-  robots: { index: true, follow: true },
+  alternates: { canonical: "/impressum" },
+  robots: { index: false, follow: true },
 };
 
 function Label({ children }: { children: React.ReactNode }) {

@@ -28,10 +28,10 @@ export default function Principles() {
     <section className="border-t border-line bg-paper">
       <div className="mx-auto max-w-container px-5 py-24 sm:px-8 lg:py-32">
         <Reveal>
-          <p className="mb-12 flex items-center gap-3 text-[0.7rem] uppercase tracking-eyebrow text-stone">
+          <h2 className="mb-12 flex items-center gap-3 text-[0.7rem] uppercase tracking-eyebrow text-stone">
             <span className="h-px w-8 bg-cognac" />
             Wofür wir stehen
-          </p>
+          </h2>
         </Reveal>
 
         <div className="grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">

@@ -1,21 +1,16 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
-const SITE_URL = "https://www.loefflersoul.de";
-
+// Erzeugt /sitemap.xml. Enthält nur Seiten, die in Google erscheinen sollen –
+// Impressum und Datenschutz sind bewusst ausgenommen (noindex).
+// Der Shop (shop.loefflersoul.de) hat seine eigene Sitemap von Shopify.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   return [
     {
       url: SITE_URL,
-      lastModified: now,
+      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
-    },
-    {
-      url: `${SITE_URL}/impressum`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.2,
     },
   ];
 }

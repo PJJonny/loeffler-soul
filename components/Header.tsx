@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
+import { SHOP_LINKS } from "@/lib/shop";
 
 const NAV = [
-  { label: "Kollektion", href: "https://shop.loefflersoul.de" },
+  { label: "Shop", href: SHOP_LINKS.navigation },
   { label: "Handwerk", href: "/#handwerk" },
   { label: "Materialien", href: "/#materialien" },
   { label: "Geschichte", href: "/#geschichte" },
@@ -65,11 +66,17 @@ export default function Header() {
         </ul>
 
         <div className="flex items-center gap-4">
+          {/* Oben dezent umrandet (der Hero-Button trägt das Gewicht),
+              nach dem Scrollen dunkel – dann ist er der Weg in den Shop */}
           <a
-            href="/#kontakt"
-            className="hidden border border-ink/30 px-5 py-2.5 text-[0.72rem] uppercase tracking-eyebrow text-ink transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-cream sm:inline-block"
+            href={SHOP_LINKS.headerButton}
+            className={`hidden border px-5 py-2.5 text-[0.72rem] uppercase tracking-eyebrow transition-colors duration-300 sm:inline-block ${
+              scrolled
+                ? "border-ink bg-ink text-cream hover:border-espresso hover:bg-espresso"
+                : "border-ink/30 text-ink hover:border-ink hover:bg-ink hover:text-cream"
+            }`}
           >
-            Anfrage stellen
+            Zum Shop
           </a>
 
           {/* Mobile-Menü-Button */}
@@ -121,11 +128,11 @@ export default function Header() {
           ))}
           <li className="py-5">
             <a
-              href="/#kontakt"
+              href={SHOP_LINKS.menueButton}
               onClick={() => setOpen(false)}
-              className="inline-block border border-ink px-6 py-3 text-[0.72rem] uppercase tracking-eyebrow text-ink"
+              className="inline-block bg-ink px-6 py-3 text-[0.72rem] uppercase tracking-eyebrow text-cream"
             >
-              Anfrage stellen
+              Zum Shop
             </a>
           </li>
         </ul>
