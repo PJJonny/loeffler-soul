@@ -45,6 +45,10 @@ export default function Craft() {
             </p>
           </Reveal>
           <Reveal delay={100}>
+            {/* PERSÖNLICHE AUSSAGE (2 von 2): stimmt, solange jede Tasche
+                komplett von einer Person gefertigt wird. Sonst z. B.:
+                „Sechs bis acht Stunden reine Handarbeit.“
+                Siehe README, Abschnitt „Wenn weitere Hände mitfertigen“. */}
             <h2 className="font-display text-3xl font-normal leading-tight text-ink sm:text-4xl">
               Sechs bis acht Stunden,
               <br className="hidden sm:block" /> ein Paar Hände.
@@ -53,16 +57,18 @@ export default function Craft() {
           <Reveal delay={180}>
             <p className="mt-6 max-w-prose text-base leading-relaxed text-stone sm:text-lg">
               Vom ersten Schnitt bis zur letzten Naht entsteht jede Tasche in
-              eigener Handarbeit — Schritt für Schritt, ohne Fließband.
+              Handarbeit am Bodensee — Schritt für Schritt, ohne Fließband.
             </p>
           </Reveal>
         </div>
 
         {/* Prozessschritte */}
-        <div className="grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+        {/* Trennlinien als Rahmen je Feld (bleiben auch während der
+            Einblend-Animation exakt 1 px breit) */}
+        <div className="grid border-l border-t border-line sm:grid-cols-2 lg:grid-cols-3">
           {STEPS.map((step, i) => (
             <Reveal key={step.n} delay={(i % 3) * 100}>
-              <div className="group h-full bg-paper p-8 transition-colors duration-500 hover:bg-cream">
+              <div className="group h-full border-b border-r border-line bg-paper p-8 transition-colors duration-500 hover:bg-cream">
                 <span className="font-display text-3xl font-normal text-cognac/70">
                   {step.n}
                 </span>
@@ -77,10 +83,19 @@ export default function Craft() {
           ))}
         </div>
 
+        {/* PERSÖNLICHE AUSSAGE (1 von 2): nur wahr, solange Alina jede
+            Tasche selbst fertigt. Fertigen weitere Hände mit, an diesem Tag
+            ersetzen, z. B. durch „Gefertigt in Handarbeit am Bodensee – von
+            Alina Loeffler und ihrem Team.“
+            Siehe README, Abschnitt „Wenn weitere Hände mitfertigen“. */}
         <Reveal delay={150}>
-          <p className="mt-8 text-[0.72rem] uppercase tracking-wide text-stone">
-            6–8 Stunden reine Handarbeit · 6 Arbeitsschritte · jede Tasche von mir
-            selbst gefertigt
+          <p className="mt-8 flex items-start gap-3 text-sm text-stone">
+            <span aria-hidden="true" className="mt-2.5 h-px w-8 shrink-0 bg-cognac" />
+            <span>
+              Jede Tasche fertigt{" "}
+              <span className="text-ink">Alina Loeffler</span> selbst – vom
+              Zuschnitt bis zur finalen Kontrolle.
+            </span>
           </p>
         </Reveal>
       </div>

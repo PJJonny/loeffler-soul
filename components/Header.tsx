@@ -46,13 +46,13 @@ export default function Header() {
         <a href="/#hero" className="text-ink" aria-label="LOEFFLER SOUL – Startseite">
           <Logo
             className={`w-auto transition-all duration-500 ease-soft ${
-              scrolled ? "h-28 sm:h-32" : "h-32 sm:h-40"
+              scrolled ? "h-16 sm:h-24" : "h-24 sm:h-32"
             }`}
           />
         </a>
 
         {/* Desktop-Navigation */}
-        <ul className="hidden items-center gap-9 lg:flex">
+        <ul className="hidden items-center gap-8 lg:flex xl:gap-10">
           {NAV.map((item) => (
             <li key={item.href}>
               <a
@@ -67,10 +67,13 @@ export default function Header() {
 
         <div className="flex items-center gap-4">
           {/* Oben dezent umrandet (der Hero-Button trägt das Gewicht),
-              nach dem Scrollen dunkel – dann ist er der Weg in den Shop */}
+              nach dem Scrollen dunkel – dann ist er der Weg in den Shop.
+              Auch am Handy sichtbar; bei offenem Menü übernimmt der Button im Menü. */}
           <a
             href={SHOP_LINKS.headerButton}
-            className={`hidden border px-5 py-2.5 text-[0.72rem] uppercase tracking-eyebrow transition-colors duration-300 sm:inline-block ${
+            className={`border px-4 py-2 text-[0.66rem] uppercase tracking-eyebrow transition-colors duration-300 sm:px-5 sm:py-2.5 sm:text-[0.72rem] ${
+              open ? "invisible" : "inline-block"
+            } ${
               scrolled
                 ? "border-ink bg-ink text-cream hover:border-espresso hover:bg-espresso"
                 : "border-ink/30 text-ink hover:border-ink hover:bg-ink hover:text-cream"

@@ -3,10 +3,11 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Manifest from "@/components/Manifest";
 import Collection from "@/components/Collection";
+import Worn from "@/components/Worn";
 import Craft from "@/components/Craft";
 import Materials from "@/components/Materials";
 import Story from "@/components/Story";
-import Principles from "@/components/Principles";
+import Innovation from "@/components/Innovation";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { OPEN_GRAPH } from "@/lib/site";
@@ -23,12 +24,13 @@ export default function Home() {
       <Header />
       <main id="hauptinhalt">
         <Hero />
-        <Manifest />
         <Collection />
+        <Worn />
+        <Manifest />
         <Craft />
         <Materials />
         <Story />
-        <Principles />
+        <Innovation />
         <Contact />
       </main>
       <Footer />

@@ -1,27 +1,32 @@
+import Image from "next/image";
 import Reveal from "./Reveal";
 
 const FACTS: [string, string][] = [
-  ["Leder", "Sorgfältig ausgewählte Lederarten, modellabhängig"],
   ["Hauptleder", "Pflanzlich gegerbtes, nubukiertes Rindleder"],
   ["Weitere Leder", "Master Büffelnappa & geprägtes Büffelleder"],
   ["Gerbung", "Je nach Lederart – siehe Produktbeschreibung"],
   ["Herkunft", "Bezug über einen Großhändler in Süddeutschland"],
   ["Beschläge", "Ausgewählte Metallbeschläge, robuster Reißverschluss"],
   ["Produktion", "Kleine Chargen, keine Massenproduktion"],
+  ["Reparatur", "Auch nach Jahren prüfen wir individuelle Lösungen"],
 ];
 
-const NOTES: { title: string; text: string }[] = [
+// Details aus der Nähe (Hochformat 3:4, /public)
+const DETAILS = [
   {
-    title: "Beschläge",
-    text: "Ausgewählte Metallbeschläge und ein robuster Reißverschluss — nach Funktionalität, Haltbarkeit und stimmigem Gesamtbild gewählt.",
+    src: "/produkt-detail.jpg",
+    alt: "Nahaufnahme der Sling: Leder, Naht und Reißverschluss",
+    cap: "Leder, Naht und Prägung",
   },
   {
-    title: "Reparatur",
-    text: "Unsere Taschen sind so konstruiert, dass sie lange genutzt werden können. Sollte nach Jahren intensiver Nutzung eine Reparatur nötig werden, prüfen wir individuelle Lösungen.",
+    src: "/innen.jpg",
+    alt: "Nahaufnahme von Karabinerhaken, Gurt und Reißverschluss der Sling",
+    cap: "Karabiner und Reißverschluss",
   },
   {
-    title: "Auflage",
-    text: "Wir produzieren bewusst in kleinen Chargen und begrenzten Auflagen — jede Tasche mit Zeit und Aufmerksamkeit gefertigt.",
+    src: "/futter.jpg",
+    alt: "Geöffnete Sling mit geblümtem Innenfutter",
+    cap: "Innenleben, je nach Modell",
   },
 ];
 
@@ -51,36 +56,22 @@ export default function Materials() {
                 Für unsere Taschen verwenden wir sorgfältig ausgewählte Leder,
                 die wir ausschließlich über einen süddeutschen Großhändler
                 beziehen. Je nach Modell und Farbe kommen unterschiedliche
-                Lederarten zum Einsatz – darunter pflanzlich gegerbtes,
-                nubukiertes Rindleder, Master Büffelnappa sowie geprägtes
-                Büffelleder. Welches Leder bei der jeweiligen Tasche verwendet
-                wird, ist in der Produktbeschreibung im Shop genau angegeben.
+                Lederarten zum Einsatz. Welches Leder eine Tasche hat, steht
+                genau in ihrer Produktbeschreibung im Shop.
               </p>
               <p>
-                Der größte Teil unserer Produkte entsteht aus pflanzlich
+                Der größte Teil unserer Taschen entsteht aus pflanzlich
                 gegerbtem Rindleder mit samtig-weicher, offenporiger Oberfläche
-                und integriertem Fleckschutz für besondere Langlebigkeit. Es
-                wird chromfrei, metallfrei und ohne erdölbasierte Gerbstoffe
-                hergestellt und ist biologisch abbaubar.
+                und integriertem Fleckschutz. Es wird chromfrei, metallfrei und
+                ohne erdölbasierte Gerbstoffe hergestellt. Das Leder entsteht
+                als Nebenprodukt der Lebensmittelindustrie – die Tiere werden
+                nicht eigens für die Ledergewinnung gehalten.
               </p>
               <p>
-                Das von uns verwendete Leder entsteht als Nebenprodukt der
-                Lebensmittelindustrie – die Tiere werden nicht eigens für die
-                Ledergewinnung gehalten. Wir verarbeiten damit einen bereits
-                vorhandenen natürlichen Rohstoff zu Produkten, die darauf
-                ausgelegt sind, über viele Jahre getragen und genutzt zu
-                werden.
-              </p>
-              <p>
-                Leder ist ein natürliches, besonders langlebiges Material.
-                Gerade diese lange Nutzungsdauer ist für uns ein wesentlicher
-                Teil eines bewussten Umgangs mit Ressourcen: Wir möchten
-                Taschen schaffen, die nicht nach einer Saison ersetzt werden,
-                sondern mit der Zeit ihren eigenen Charakter entwickeln.
-              </p>
-              <p>
-                Jedes Leder bringt dabei seine eigene Haptik, Struktur und ein
-                individuelles Erscheinungsbild mit.
+                Leder ist ein natürliches, langlebiges Material, und jedes
+                bringt seine eigene Haptik und Struktur mit. Wir möchten Taschen
+                schaffen, die nicht nach einer Saison ersetzt werden, sondern
+                mit der Zeit ihren eigenen Charakter entwickeln.
               </p>
             </div>
           </Reveal>
@@ -100,19 +91,29 @@ export default function Materials() {
           </Reveal>
         </div>
 
-        {/* Ehrliche Notizen */}
-        <div className="mt-16 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-3">
-          {NOTES.map((note, i) => (
-            <Reveal key={note.title} delay={i * 100}>
-              <div className="h-full bg-cream p-8">
-                <h3 className="font-display text-lg text-ink">{note.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-stone">
-                  {note.text}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        {/* Details aus der Nähe */}
+        <Reveal>
+          <ul className="mt-16 grid grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
+            {DETAILS.map((d) => (
+              <li key={d.src}>
+                <figure>
+                  <div className="relative aspect-[3/4] overflow-hidden bg-sand">
+                    <Image
+                      src={d.src}
+                      alt={d.alt}
+                      fill
+                      sizes="(max-width: 640px) 33vw, (max-width: 1400px) 30vw, 420px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <figcaption className="mt-3 text-[0.72rem] leading-snug text-stone sm:text-sm">
+                    {d.cap}
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );

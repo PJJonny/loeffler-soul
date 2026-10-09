@@ -106,6 +106,13 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${display.variable} ${body.variable}`}>
       <body className="font-sans antialiased overflow-x-hidden">
+        {/* Ohne JavaScript: eingeblendete Inhalte sofort sichtbar */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html:
+              "<style>.reveal{opacity:1!important;transform:none!important}</style>",
+          }}
+        />
         <a href="#hauptinhalt" className="skip-link">
           Zum Inhalt springen
         </a>

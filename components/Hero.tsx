@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden bg-cream pt-40 sm:pt-48 lg:pt-52"
+      className="relative overflow-hidden bg-cream pt-36 sm:pt-44"
     >
       <div className="mx-auto grid max-w-container items-center gap-12 px-5 pb-16 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:pb-24">
         {/* Text */}
@@ -16,7 +16,7 @@ export default function Hero() {
           <Reveal delay={0}>
             <p className="mb-7 flex items-center gap-3 text-[0.7rem] uppercase tracking-eyebrow text-stone">
               <span className="h-px w-8 bg-cognac" />
-              Handgefertigt in Eigenarbeit · Kleine Chargen
+              Handgefertigt in kleinen Chargen
             </p>
           </Reveal>
 
@@ -31,8 +31,9 @@ export default function Hero() {
 
           <Reveal delay={240}>
             <p className="mt-7 max-w-prose text-base leading-relaxed text-stone sm:text-lg">
-              Handgefertigte Ledertaschen aus pflanzlich gegerbtem, nubukiertem
-              Rindleder. Entworfen, um mit der Zeit persönlicher zu werden.
+              Handgefertigte Ledertaschen vom Bodensee, aus sorgfältig
+              ausgewähltem Leder. Entworfen, um mit der Zeit persönlicher zu
+              werden.
             </p>
           </Reveal>
 
@@ -61,10 +62,10 @@ export default function Hero() {
                   Handwerk entdecken
                 </a>
                 <a
-                  href="#kontakt"
+                  href="#kollektion"
                   className="link-underline text-[0.74rem] uppercase tracking-wide text-ink/70 transition-colors duration-300 hover:text-ink"
                 >
-                  Kontakt aufnehmen
+                  Größen & Preise
                 </a>
               </div>
             </div>
@@ -79,8 +80,10 @@ export default function Hero() {
             aria-label="Die Sling im Shop ansehen"
             className="group block"
           >
-            <figure className="relative aspect-[3/4] w-full overflow-hidden bg-sand">
-              {/* HERO-BILD: /public/hero.jpg (Hochformat 3:4) */}
+            {/* Tablet hochkant: Querformat-Ausschnitt, damit Überschrift
+                und Shop-Button ohne Scrollen sichtbar bleiben */}
+            <figure className="relative aspect-[3/4] w-full overflow-hidden bg-sand sm:aspect-[4/3] lg:aspect-[3/4]">
+              {/* HERO-BILD: /public/hero.jpg (Hochformat 3:4, Motiv mittig) */}
               <Image
                 src="/hero.jpg"
                 alt="Handgefertigte LOEFFLER SOUL Sling aus nubukiertem Rindleder, am Körper getragen"

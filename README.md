@@ -41,10 +41,13 @@ Dateien durch deine eigenen Fotos und behalte die Dateinamen bei.**
 
 | Datei in `/public`   | Bereich der Seite              | Empfohlenes Format | Empfohlenes Foto                              |
 | -------------------- | ------------------------------ | ------------------ | --------------------------------------------- |
-| `hero.jpg`           | Großes Bild ganz oben (Hero)   | Hochformat ~3:4    | Tasche am Körper getragen (stimmungsvoll)     |
+| `hero.jpg`           | Großes Bild ganz oben (Hero)   | Hochformat ~3:4    | Tasche am Körper getragen, Motiv mittig (Tablets zeigen einen Querformat-Ausschnitt) |
 | `sling-beige.jpg`    | Kollektion: Karte „Kompakt"    | Querformat 4:3     | Freigestelltes Produktfoto auf Creme          |
 | `sling-braun.jpg`    | Kollektion: Karte „Standard"   | Querformat 4:3     | Freigestelltes Produktfoto auf Creme          |
 | `kenia.jpg`          | Geschichte                     | Hochformat ~4:5    | Foto zur Gründungsgeschichte                  |
+| `entwurf-*.jpg`      | Neue Entwürfe („Aus dem Atelier“) | Quadrat 1:1     | Entwurfsbild je neuem Modell                  |
+| `getragen-see.jpg`, `getragen.jpg`, `getragen-wiese.jpg`, `getragen2.jpg` | Getragen (Galerie) | Hochformat 3:4 | Tasche am Körper |
+| `produkt-detail.jpg`, `innen.jpg`, `futter.jpg` | Materialien: Details | Hochformat 3:4 | Nahaufnahmen von Leder, Beschlägen, Innenleben |
 | `og-image.jpg`       | Vorschaubild beim Teilen       | Querformat 1200×630| Stärkstes Produktfoto (wird bei Links gezeigt)|
 
 So gehst du vor:
@@ -155,19 +158,41 @@ Falls du lieber Formspree nutzt:
 | Was                         | Wo                                            |
 | --------------------------- | --------------------------------------------- |
 | Texte der Abschnitte        | jeweilige Datei in `components/`              |
-| Gründer-Signatur            | `components/Story.tsx` (Platzhalter `Gründer`)|
+| Signatur der Gründerin      | `components/Story.tsx`                        |
 | Navigation / CTA            | `components/Header.tsx`                       |
 | Shop- & Instagram-Links, Tracking | `lib/shop.ts`                           |
 | „ab"-Preis der Kollektion   | `lib/shop.ts` (`AB_PREIS`)                    |
 | Kollektion (Karten, Maße)   | `components/Collection.tsx`                   |
+| Neue Entwürfe („Aus dem Atelier“) | `components/Innovation.tsx`             |
+| Galerie „Getragen“          | `components/Worn.tsx`                         |
 | Google: Titel, Beschreibung, Vorschaubild, strukturierte Daten | `lib/site.ts` |
 | Farben & Schriften          | `app/globals.css` + `tailwind.config.ts`      |
 | Impressum / Datenschutz     | `app/impressum/`, `app/datenschutz/`          |
 
-> **Wichtig vor dem Livegang:** Impressum und Datenschutzerklärung enthalten
-> nur Platzhalter. Ergänze sie mit deinen echten Angaben (Name, Anschrift,
-> Kontakt, ggf. rechtliche Beratung), bevor die Seite öffentlich erreichbar
-> ist.
+> **Rechtstexte aktuell halten:** Impressum und Datenschutz sind ausgefüllt.
+> Ändert sich etwas (Anschrift, Mitarbeitende, Umsatzsteuer-Status), dort und
+> im Shop anpassen.
+
+### Wenn weitere Hände mitfertigen
+
+Heute fertigt Alina jede Tasche selbst. Das sagt die Seite auch, aber bewusst
+nur an **zwei Stellen**. Alle anderen Aussagen („von Hand gefertigt“, „am
+Bodensee“, „kleine Chargen“, „Unikat“) bleiben wahr, solange in Handarbeit in
+der Region gefertigt wird. An dem Tag, an dem jemand anderes mitfertigt (Team
+oder Partnerwerkstatt), diese beiden Stellen anpassen:
+
+| Stelle | Heute | Dann |
+| ------ | ----- | ---- |
+| `components/Craft.tsx`, Satz unter den sechs Schritten | „Jede Tasche fertigt Alina Loeffler selbst …“ | z. B. „Gefertigt in Handarbeit am Bodensee – von Alina Loeffler und ihrem Team.“ |
+| `components/Craft.tsx`, Überschrift | „Sechs bis acht Stunden, ein Paar Hände.“ | Bleibt, wenn weiterhin jede Tasche komplett von einer Person gefertigt wird – sonst „Sechs bis acht Stunden reine Handarbeit.“ |
+
+Außerdem:
+
+- Schritt 06 („bevor sie das Atelier verlässt“) stimmt, solange Endkontrolle
+  und Versand bei euch bleiben.
+- Shop-Texte und Instagram auf gleichlautende Aussagen durchsehen.
+- Wird die Kleinunternehmergrenze überschritten: Hinweis „§ 19 UStG“ in
+  `components/Collection.tsx` und im Shop entfernen, Preisangaben prüfen.
 
 ---
 

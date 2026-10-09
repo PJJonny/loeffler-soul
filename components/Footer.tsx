@@ -5,13 +5,16 @@ const LINKS = [
   { label: "Handwerk", href: "/#handwerk" },
   { label: "Materialien", href: "/#materialien" },
   { label: "Geschichte", href: "/#geschichte" },
+  { label: "Neue Entwürfe", href: "/#entwuerfe" },
   { label: "Kontakt", href: "/#kontakt" },
 ];
 
+// „Kontakt“ steht schon unter „Entdecken“ – hier stattdessen die
+// Versandinfos aus dem Shop (häufigste Frage vor dem Kauf)
 const LEGAL = [
+  { label: "Versand", href: SHOP_LINKS.footerVersand },
   { label: "Impressum", href: "/impressum" },
   { label: "Datenschutz", href: "/datenschutz" },
-  { label: "Kontakt", href: "/#kontakt" },
   { label: "Instagram", href: INSTAGRAM_URL, external: true },
 ];
 

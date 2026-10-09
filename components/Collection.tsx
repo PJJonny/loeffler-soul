@@ -34,9 +34,17 @@ const MODELLE = [
   },
 ];
 
+// Fakten rund um den Kauf (Versanddauer laut Versandbedingungen im Shop)
+const VERSPRECHEN = [
+  { titel: "Von Hand gefertigt", text: "Schritt für Schritt am Bodensee" },
+  { titel: "Auch nach Jahren für dich da", text: "Reparaturen prüfen wir individuell" },
+  { titel: "Versandfertig in 1–2 Werktagen", text: "Versand innerhalb Deutschlands" },
+  { titel: "Persönlich erreichbar", text: "Wir antworten selbst per E-Mail" },
+];
+
 export default function Collection() {
   return (
-    <section id="kollektion" className="scroll-mt-36 bg-cream">
+    <section id="kollektion" className="scroll-mt-36 border-t border-line bg-cream">
       <div className="mx-auto max-w-container px-5 py-24 sm:px-8 lg:py-32">
         {/* Kopf: Text links, Preis rechts */}
         <div className="mb-14 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
@@ -123,6 +131,16 @@ export default function Collection() {
             </Reveal>
           ))}
         </div>
+
+        {/* Was beim Kauf zählt – ruhig, ohne Icons */}
+        <ul className="mt-12 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-8 text-sm leading-snug text-ink/80 lg:grid-cols-4 lg:gap-8">
+          {VERSPRECHEN.map((v) => (
+            <li key={v.titel}>
+              <span className="block text-ink">{v.titel}</span>
+              <span className="mt-1 block text-[0.8rem] text-stone">{v.text}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

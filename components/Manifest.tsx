@@ -9,17 +9,17 @@ const LINES = [
 
 export default function Manifest() {
   return (
-    <section className="border-y border-line bg-sand">
+    <section className="bg-espresso text-cream">
       <div className="mx-auto max-w-4xl px-5 py-24 text-center sm:px-8 lg:py-32">
         <Reveal>
-          <h2 className="mb-10 text-[0.7rem] uppercase tracking-eyebrow text-cognac-deep">
+          <h2 className="mb-10 text-[0.7rem] uppercase tracking-eyebrow text-cream/55">
             Das Versprechen
           </h2>
         </Reveal>
         <div className="space-y-3 sm:space-y-4">
           {LINES.map((line, i) => (
             <Reveal key={line} delay={i * 140}>
-              <p className="font-display text-2xl font-normal leading-snug text-ink sm:text-[2.1rem] lg:text-[2.6rem]">
+              <p className="font-display text-2xl font-normal leading-snug text-cream sm:text-[2.1rem] lg:text-[2.6rem]">
                 {line}
               </p>
             </Reveal>

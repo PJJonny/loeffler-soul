@@ -22,7 +22,7 @@ export const SITE_DESCRIPTION = `Handgefertigte Ledertaschen vom Bodensee: die S
 
 /** Text für geteilte Links (WhatsApp, Instagram, Facebook …) */
 export const SHARE_DESCRIPTION =
-  "Die Sling in zwei Größen – Kompakt und Standard. In eigener Handarbeit gefertigt, in kleinen Chargen, jede Tasche ein Unikat.";
+  "Die Sling in zwei Größen – Kompakt und Standard. Von Hand gefertigt am Bodensee, in kleinen Chargen, jede Tasche ein Unikat.";
 
 /** Vorschaubild für geteilte Links: /public/og-image.jpg (1200 × 630 px) */
 export const OG_IMAGE = {
@@ -66,7 +66,7 @@ export const STRUCTURED_DATA = {
       email: "info@loefflersoul.de",
       slogan: "Handgefertigte Taschen mit Charakter.",
       description:
-        "Handgefertigte Ledertaschen in eigener Handarbeit vom Bodensee, gefertigt in kleinen Chargen – überwiegend aus pflanzlich gegerbtem Rindleder, dazu Büffelnappa und geprägtes Büffelleder.",
+        "Handgefertigte Ledertaschen vom Bodensee, gefertigt in kleinen Chargen – überwiegend aus pflanzlich gegerbtem Rindleder, dazu Büffelnappa und geprägtes Büffelleder.",
       founder: { "@type": "Person", name: "Alina Loeffler" },
       address: {
         "@type": "PostalAddress",

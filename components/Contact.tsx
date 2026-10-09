@@ -26,6 +26,7 @@ const INTERESSEN = [
   "Sonderanfertigung",
   "Frage zu einer Tasche",
   "Presse / Kooperation",
+  "Feedback zu neuen Entwürfen",
   "Sonstiges",
 ];
 
@@ -256,6 +257,7 @@ export default function Contact() {
                     href="/datenschutz"
                     className="link-underline text-ink"
                     target="_blank"
+                    rel="noopener"
                   >
                     Datenschutzhinweise
                   </a>{" "}

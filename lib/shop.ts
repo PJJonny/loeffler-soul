@@ -60,6 +60,7 @@ export const SHOP_LINKS = {
   versandkosten: shopLink("versandkosten", "/policies/shipping-policy"),
   kontakt: shopLink("kontakt"),
   footerButton: shopLink("footer-button"),
+  footerVersand: shopLink("footer-versand", "/policies/shipping-policy"),
 };
 
 /** Instagram-Profil von LOEFFLER SOUL */
