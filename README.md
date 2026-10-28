@@ -33,9 +33,12 @@ npm run start    # Produktions-Build lokal testen
 
 ## 2. Bilder & Logo einfügen
 
-Alle Bilder liegen im Ordner **`/public`**. Die Seite zeigt dort aktuell
-schlichte Platzhalter. Du musst nichts im Code ändern — **ersetze einfach die
-Dateien durch deine eigenen Fotos und behalte die Dateinamen bei.**
+Alle Bilder liegen im Ordner **`/public`**. Du musst nichts im Code ändern —
+**ersetze einfach die Dateien durch neue Fotos und behalte die Dateinamen
+bei.** Jedes Foto lässt sich auf der Seite anklicken und groß ansehen
+(Großansicht, `components/Lightbox.tsx`). Hat ein neues Foto andere Pixelmaße,
+im jeweiligen Abschnitt `width`/`height` anpassen (sonst stimmt nur das
+Seitenverhältnis in der Großansicht nicht ganz).
 
 ### Welches Foto gehört wohin?
 
@@ -46,8 +49,8 @@ Dateien durch deine eigenen Fotos und behalte die Dateinamen bei.**
 | `sling-braun.jpg`    | Kollektion: Karte „Standard"   | Querformat 4:3     | Freigestelltes Produktfoto auf Creme          |
 | `kenia.jpg`          | Geschichte                     | Hochformat ~4:5    | Foto zur Gründungsgeschichte                  |
 | `entwurf-*.jpg`      | Neue Entwürfe („Aus dem Atelier“) | Quadrat 1:1     | Entwurfsbild je neuem Modell                  |
-| `getragen-see.jpg`, `getragen.jpg`, `getragen-wiese.jpg`, `getragen2.jpg` | Getragen (Galerie) | Hochformat 3:4 | Tasche am Körper |
-| `produkt-detail.jpg`, `innen.jpg`, `futter.jpg` | Materialien: Details | Hochformat 3:4 | Nahaufnahmen von Leder, Beschlägen, Innenleben |
+| `getragen-mann-see.jpg`, `getragen-see-bank.jpg`, `getragen-ruecken.jpg`, `getragen-huefte.jpg` | Getragen (Galerie) | Hochformat 3:4 | Tasche am Körper, Männer und Frauen |
+| `detail-praegung.jpg`, `detail-gurt.jpg`, `detail-innen.jpg` | Materialien: Details | Querformat 4:3 | Nahaufnahmen von Prägung, Gurtansatz, Innenleben (Fotos aus dem Shop) |
 | `og-image.jpg`       | Vorschaubild beim Teilen       | Querformat 1200×630| Stärkstes Produktfoto (wird bei Links gezeigt)|
 
 So gehst du vor:
@@ -56,6 +59,13 @@ So gehst du vor:
 2. Als `.jpg` exportieren und **exakt** so benennen wie in der Tabelle.
 3. Die gleichnamige Datei in `/public` überschreiben.
 4. Seite neu laden — fertig.
+
+> Nicht mehr verwendet (können im Repository gelöscht werden):
+> `getragen-see.jpg`, `getragen.jpg`, `getragen-wiese.jpg`, `getragen2.jpg`,
+> `innen.jpg`, `futter.jpg`, `segel.jpg`, `farben.jpg`, `groessen.jpg`,
+> `kollektion-gruppe.jpg`, `kompakt-deck2.jpg`, `kompakt-deck3.jpg`, `luna.jpg`,
+> `produkt-front.jpg` sowie – falls schon hochgeladen – `getragen-brust.jpg` und
+> `detail-karabiner.jpg`.
 
 > Tipp: Halte die JPGs unter ~300 KB (Breite max. 1600 px), das hält die
 > Seite schnell. Tools wie <https://squoosh.app> komprimieren ohne sichtbaren
@@ -165,6 +175,8 @@ Falls du lieber Formspree nutzt:
 | Kollektion (Karten, Maße)   | `components/Collection.tsx`                   |
 | Neue Entwürfe („Aus dem Atelier“) | `components/Innovation.tsx`             |
 | Galerie „Getragen“          | `components/Worn.tsx`                         |
+| Großansicht der Fotos       | `components/Lightbox.tsx`                     |
+| Instagram-Logo              | `components/InstagramIcon.tsx`                |
 | Google: Titel, Beschreibung, Vorschaubild, strukturierte Daten | `lib/site.ts` |
 | Farben & Schriften          | `app/globals.css` + `tailwind.config.ts`      |
 | Impressum / Datenschutz     | `app/impressum/`, `app/datenschutz/`          |

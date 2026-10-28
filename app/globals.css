@@ -115,6 +115,11 @@ p {
 .link-underline:hover {
   background-size: 100% 1px;
 }
+/* Unterstrich auch, wenn der ganze Link (mit Icon) berührt wird */
+.link-group:hover .link-underline,
+.link-group:focus-visible .link-underline {
+  background-size: 100% 1px;
+}
 
 /* Wischbare Bildreihen ohne sichtbaren Scrollbalken */
 .scrollbar-none {
@@ -122,6 +127,83 @@ p {
 }
 .scrollbar-none::-webkit-scrollbar {
   display: none;
+}
+
+/* ============================================================
+   Großansicht (Lightbox) – siehe components/Lightbox.tsx
+   ============================================================ */
+.lightbox {
+  --lb-vh: 100vh;
+}
+@supports (height: 100svh) {
+  .lightbox {
+    --lb-vh: 100svh;
+  }
+}
+.lightbox {
+  /* Platz fürs Bild: Fensterbreite/-höhe abzüglich Kopf- und Fußzeile */
+  --lb-w: calc(100vw - 1.5rem);
+  --lb-h: calc(var(--lb-vh) - 12rem);
+}
+.lightbox.lb-single {
+  --lb-h: calc(var(--lb-vh) - 9rem);
+}
+@media (min-width: 640px) {
+  .lightbox {
+    --lb-w: calc(100vw - 10rem);
+  }
+}
+@media (min-width: 768px) {
+  .lightbox.lb-multi {
+    --lb-h: calc(var(--lb-vh) - 13.5rem);
+  }
+  .lightbox.lb-single {
+    --lb-h: calc(var(--lb-vh) - 9.5rem);
+  }
+}
+@media (min-width: 1024px) {
+  .lightbox {
+    --lb-w: min(calc(100vw - 14rem), 1600px);
+  }
+}
+@keyframes lb-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.965);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes lb-from-right {
+  from {
+    opacity: 0;
+    transform: translate3d(48px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes lb-from-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-48px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.lb-pop {
+  animation: lb-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.lb-from-right {
+  animation: lb-from-right 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.lb-from-left {
+  animation: lb-from-left 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Respektiere reduzierte Bewegung */
@@ -133,6 +215,11 @@ p {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .lb-pop,
+  .lb-from-right,
+  .lb-from-left {
+    animation: none;
   }
   .img-zoom,
   .group:hover .img-zoom {

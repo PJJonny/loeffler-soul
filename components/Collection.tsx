@@ -1,11 +1,14 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
+import { ZoomImage, type LightboxItem } from "./Lightbox";
 import { AB_PREIS, SHOP_LINKS } from "@/lib/shop";
 
 /*
   DIE KOLLEKTION
   --------------
   Zwei Karten, eine je Größe – mit Foto, Maßen und Link in den Shop.
+  Das Foto öffnet die Großansicht (beide Größen zum Durchblättern),
+  der Text- und Button-Bereich führt in den Shop.
   Der Preis steht bewusst nur einmal („ab …“, siehe AB_PREIS in lib/shop.ts),
   nicht auf jeder Karte.
 
@@ -33,6 +36,15 @@ const MODELLE = [
     href: SHOP_LINKS.kollektionStandard,
   },
 ];
+
+// Für die Großansicht: beide Größen nebeneinander durchblättern
+const KARTEN_BILDER: LightboxItem[] = MODELLE.map((m) => ({
+  src: m.bild,
+  alt: m.alt,
+  caption: `${m.name} · ${m.masse}`,
+  width: 1448,
+  height: 1086,
+}));
 
 // Fakten rund um den Kauf (Versanddauer laut Versandbedingungen im Shop)
 const VERSPRECHEN = [
@@ -89,21 +101,23 @@ export default function Collection() {
           </Reveal>
         </div>
 
-        {/* Zwei Karten – die ganze Karte ist klickbar */}
+        {/* Zwei Karten: Foto → Großansicht, Text und Button → Shop */}
         <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
           {MODELLE.map((m, i) => (
             <Reveal key={m.name} delay={i * 120} className="h-full">
-              <article className="group relative flex h-full flex-col border border-line bg-paper">
+              <article className="flex h-full flex-col border border-line bg-paper">
                 <div className="relative aspect-[4/3] overflow-hidden bg-cream">
-                  <Image
-                    src={m.bild}
-                    alt={m.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1400px) 50vw, 660px"
-                    className="img-zoom object-cover"
-                  />
+                  <ZoomImage items={KARTEN_BILDER} index={i}>
+                    <Image
+                      src={m.bild}
+                      alt={m.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1400px) 50vw, 660px"
+                      className="img-zoom object-cover"
+                    />
+                  </ZoomImage>
                 </div>
-                <div className="flex flex-1 flex-col p-7 sm:p-9">
+                <div className="group/karte relative flex flex-1 flex-col p-7 sm:p-9">
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                     <h3 className="font-display text-2xl font-normal text-ink">
                       {m.name}
@@ -116,12 +130,12 @@ export default function Collection() {
                   <a
                     href={m.href}
                     aria-label={`${m.name} im Shop ansehen`}
-                    className="mt-8 inline-flex w-fit items-center gap-3 border border-ink px-6 py-3 text-[0.72rem] uppercase tracking-eyebrow text-ink transition-colors duration-300 after:absolute after:inset-0 group-hover:bg-ink group-hover:text-cream"
+                    className="mt-8 inline-flex w-fit items-center gap-3 border border-ink px-6 py-3 text-[0.72rem] uppercase tracking-eyebrow text-ink transition-colors duration-300 after:absolute after:inset-0 group-hover/karte:bg-ink group-hover/karte:text-cream"
                   >
                     Im Shop ansehen
                     <span
                       aria-hidden="true"
-                      className="transition-transform duration-300 ease-soft group-hover:translate-x-1"
+                      className="transition-transform duration-300 ease-soft group-hover/karte:translate-x-1"
                     >
                       →
                     </span>

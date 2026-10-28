@@ -1,4 +1,5 @@
-import { INSTAGRAM_URL, SHOP_LINKS } from "@/lib/shop";
+import InstagramIcon from "./InstagramIcon";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, SHOP_LINKS } from "@/lib/shop";
 
 const LINKS = [
   { label: "Kollektion", href: "/#kollektion" },
@@ -10,12 +11,12 @@ const LINKS = [
 ];
 
 // „Kontakt“ steht schon unter „Entdecken“ – hier stattdessen die
-// Versandinfos aus dem Shop (häufigste Frage vor dem Kauf)
-const LEGAL = [
+// Versandinfos aus dem Shop (häufigste Frage vor dem Kauf).
+// Instagram steht mit Logo prominent links unter der Marke.
+const LEGAL: { label: string; href: string; external?: boolean }[] = [
   { label: "Versand", href: SHOP_LINKS.footerVersand },
   { label: "Impressum", href: "/impressum" },
   { label: "Datenschutz", href: "/datenschutz" },
-  { label: "Instagram", href: INSTAGRAM_URL, external: true },
 ];
 
 export default function Footer() {
@@ -32,12 +33,23 @@ export default function Footer() {
             <p className="mt-6 max-w-xs font-display text-xl font-normal leading-snug text-cream/90">
               Handgefertigte Taschen mit Charakter.
             </p>
-            <a
-              href="mailto:info@loefflersoul.de"
-              className="link-underline mt-6 inline-block text-sm text-cream/70"
-            >
-              info@loefflersoul.de
-            </a>
+            <div className="mt-6 flex flex-col items-start gap-3">
+              <a
+                href="mailto:info@loefflersoul.de"
+                className="link-underline text-sm text-cream/70 transition-colors duration-300 hover:text-cream"
+              >
+                info@loefflersoul.de
+              </a>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-group inline-flex items-center gap-2.5 text-sm text-cream/70 transition-colors duration-300 hover:text-cream"
+              >
+                <InstagramIcon className="h-[1.15rem] w-[1.15rem]" />
+                <span className="link-underline">{INSTAGRAM_HANDLE}</span>
+              </a>
+            </div>
             <div className="mt-8">
               <a
                 href={SHOP_LINKS.footerButton}

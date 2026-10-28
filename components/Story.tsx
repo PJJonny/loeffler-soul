@@ -1,5 +1,14 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
+import { ZoomImage, type LightboxItem } from "./Lightbox";
+
+const KENIA: LightboxItem = {
+  src: "/kenia.jpg",
+  alt: "Alina Loeffler näht im Schneiderprojekt in Kenia an einer handbetriebenen Nähmaschine",
+  caption: "Schneiderprojekt in Kenia",
+  width: 1100,
+  height: 1375,
+};
 
 export default function Story() {
   return (
@@ -36,14 +45,16 @@ export default function Story() {
           <Reveal delay={200}>
             <figure className="mx-auto my-2 max-w-md">
               <div className="relative aspect-[4/5] overflow-hidden bg-paper">
-                {/* BILD: Alina im Schneiderprojekt in Kenia -> /public/kenia.jpg */}
-                <Image
-                  src="/kenia.jpg"
-                  alt="Alina Loeffler näht im Schneiderprojekt in Kenia an einer handbetriebenen Nähmaschine"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 28rem"
-                  className="object-cover"
-                />
+                <ZoomImage items={[KENIA]}>
+                  {/* BILD: Alina im Schneiderprojekt in Kenia -> /public/kenia.jpg */}
+                  <Image
+                    src={KENIA.src}
+                    alt={KENIA.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 28rem"
+                    className="img-zoom object-cover"
+                  />
+                </ZoomImage>
               </div>
               <figcaption className="mt-3 text-[0.68rem] uppercase tracking-eyebrow text-stone">
                 Schneiderprojekt in Kenia

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
+import { ZoomImage, type LightboxItem } from "./Lightbox";
 
 const FACTS: [string, string][] = [
   ["Hauptleder", "Pflanzlich gegerbtes, nubukiertes Rindleder"],
@@ -11,22 +12,29 @@ const FACTS: [string, string][] = [
   ["Reparatur", "Auch nach Jahren prüfen wir individuelle Lösungen"],
 ];
 
-// Details aus der Nähe (Hochformat 3:4, /public)
-const DETAILS = [
+// Details aus der Nähe (Querformat 4:3, Fotos aus dem Onlineshop) – öffnen
+// die Großansicht. Bei neuen Fotos width/height anpassen (Pixelmaße der Datei).
+const DETAILS: LightboxItem[] = [
   {
-    src: "/produkt-detail.jpg",
-    alt: "Nahaufnahme der Sling: Leder, Naht und Reißverschluss",
-    cap: "Leder, Naht und Prägung",
+    src: "/detail-praegung.jpg",
+    alt: "Nahaufnahme der Sling in Taupe: geprägtes LOEFFLER-SOUL-Logo, Nähte und silberner Reißverschluss",
+    caption: "Leder, Naht und Prägung",
+    width: 1448,
+    height: 1086,
   },
   {
-    src: "/innen.jpg",
-    alt: "Nahaufnahme von Karabinerhaken, Gurt und Reißverschluss der Sling",
-    cap: "Karabiner und Reißverschluss",
+    src: "/detail-gurt.jpg",
+    alt: "Nahaufnahme: Der Ledergurt läuft durch einen Vierkantring direkt in die Tasche, mit sichtbaren Nähten",
+    caption: "Gurtansatz mit Vierkantring",
+    width: 1403,
+    height: 1052,
   },
   {
-    src: "/futter.jpg",
-    alt: "Geöffnete Sling mit geblümtem Innenfutter",
-    cap: "Innenleben, je nach Modell",
+    src: "/detail-innen.jpg",
+    alt: "Geöffnete Sling aus braunem, strukturiertem Leder mit braunem Innenfutter und Reißverschlussfach",
+    caption: "Innenleben, je nach Modell",
+    width: 1448,
+    height: 1086,
   },
 ];
 
@@ -91,23 +99,28 @@ export default function Materials() {
           </Reveal>
         </div>
 
-        {/* Details aus der Nähe */}
+        {/* Details aus der Nähe – am Handy wischbar, ab Tablet nebeneinander */}
         <Reveal>
-          <ul className="mt-16 grid grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
-            {DETAILS.map((d) => (
-              <li key={d.src}>
+          <ul
+            aria-label="Fotos: Details der Sling"
+            className="scrollbar-none -mx-5 mt-16 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 lg:gap-8"
+          >
+            {DETAILS.map((d, i) => (
+              <li key={d.src} className="w-[84%] shrink-0 snap-start sm:w-auto">
                 <figure>
-                  <div className="relative aspect-[3/4] overflow-hidden bg-sand">
-                    <Image
-                      src={d.src}
-                      alt={d.alt}
-                      fill
-                      sizes="(max-width: 640px) 33vw, (max-width: 1400px) 30vw, 420px"
-                      className="object-cover"
-                    />
+                  <div className="relative aspect-[4/3] overflow-hidden bg-sand">
+                    <ZoomImage items={DETAILS} index={i}>
+                      <Image
+                        src={d.src}
+                        alt={d.alt}
+                        fill
+                        sizes="(max-width: 640px) 84vw, (max-width: 1400px) 32vw, 440px"
+                        className="img-zoom object-cover"
+                      />
+                    </ZoomImage>
                   </div>
-                  <figcaption className="mt-3 text-[0.72rem] leading-snug text-stone sm:text-sm">
-                    {d.cap}
+                  <figcaption className="mt-3 text-sm leading-snug text-stone">
+                    {d.caption}
                   </figcaption>
                 </figure>
               </li>

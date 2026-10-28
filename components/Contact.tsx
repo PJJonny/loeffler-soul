@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import InstagramIcon from "./InstagramIcon";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL, SHOP_LINKS } from "@/lib/shop";
 
 /*
@@ -136,9 +137,10 @@ export default function Contact() {
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-underline mt-2 inline-block font-display text-xl text-ink"
+              className="link-group mt-2 inline-flex items-center gap-3 font-display text-xl text-ink"
             >
-              {INSTAGRAM_HANDLE}
+              <InstagramIcon className="h-6 w-6 shrink-0" />
+              <span className="link-underline">{INSTAGRAM_HANDLE}</span>
             </a>
           </div>
         </div>

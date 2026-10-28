@@ -2,14 +2,13 @@
   EXTERNE LINKS
   -------------
   Alle Verweise der Website auf den Shopify-Shop und auf Instagram an
-  einer Stelle. Ändert sich eine Adresse (z. B. ein Kollektions-Handle),
-  hier anpassen – Header, Hero, Kollektion, Kontakt und Footer übernehmen
-  es automatisch.
+  einer Stelle. Ändert sich eine Adresse, hier anpassen – Header, Hero,
+  Kollektion, Kontakt und Footer übernehmen es automatisch.
 
-  Alle Shop-Links führen bewusst auf die Gesamtkollektion statt auf
-  einzelne Produkte oder Größen: Jede Farbe ist ein Einzelstück. Ist sie
-  verkauft, führt der Link trotzdem nicht ins Leere, und neue Taschen
-  erscheinen dort automatisch.
+  Alle Shop-Buttons führen auf die Startseite des Shops
+  (https://shop.loefflersoul.de/). Von dort geht es zu allen Taschen; neue
+  Modelle und Farben erscheinen dort automatisch, und kein Link führt ins
+  Leere, wenn ein Einzelstück verkauft ist.
 
   TRACKING (UTM)
   Jeder Shop-Link trägt im Link mit, dass der Besuch von der Website kommt
@@ -21,8 +20,20 @@
 
 export const SHOP_URL = "https://shop.loefflersoul.de";
 
-/** Alle Taschen – Ziel aller Shop-Links */
-const GESAMTKOLLEKTION = "/collections/die-kollektion";
+/** Startseite des Shops – Ziel aller Shop-Buttons */
+const STARTSEITE = "/";
+
+/**
+ * Die beiden Größen als eigene Kollektion im Shop. Aktuell nicht verlinkt.
+ * Sollen die Karten „Sling Kompakt“ und „Sling Standard“ direkt zur
+ * passenden Größe führen, unten bei kollektionKompakt / kollektionStandard
+ * den zweiten Wert ergänzen, z. B. shopLink("kollektion-kompakt", GROESSEN.kompakt).
+ * Vorher im Shop prüfen, dass jede Kollektion nur Taschen ihrer Größe zeigt.
+ */
+export const GROESSEN = {
+  kompakt: "/collections/sling-kompakt",
+  standard: "/collections/sling-standard",
+};
 
 /**
  * Niedrigster Preis der Kollektion. Erscheint genau einmal auf der Seite
@@ -40,9 +51,9 @@ const UTM = {
 /**
  * Shop-Link mit Tracking.
  * @param platzierung wo der Link auf der Website sitzt (z. B. "hero-button")
- * @param pfad        Seite im Shop, standardmäßig die Gesamtkollektion
+ * @param pfad        Seite im Shop, standardmäßig die Startseite
  */
-export function shopLink(platzierung: string, pfad: string = GESAMTKOLLEKTION): string {
+export function shopLink(platzierung: string, pfad: string = STARTSEITE): string {
   const query = new URLSearchParams({ ...UTM, utm_content: platzierung });
   return `${SHOP_URL}${pfad}?${query.toString()}`;
 }
@@ -52,9 +63,6 @@ export const SHOP_LINKS = {
   headerButton: shopLink("header-button"),
   menueButton: shopLink("menue-button"),
   heroButton: shopLink("hero-button"),
-  heroBild: shopLink("hero-bild"),
-  // Nur eine Größe zeigen? Pfad ergänzen, z. B.
-  // shopLink("kollektion-kompakt", "/collections/sling-kompakt")
   kollektionKompakt: shopLink("kollektion-kompakt"),
   kollektionStandard: shopLink("kollektion-standard"),
   versandkosten: shopLink("versandkosten", "/policies/shipping-policy"),

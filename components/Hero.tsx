@@ -2,7 +2,16 @@
 
 import Image from "next/image";
 import Reveal from "./Reveal";
+import { ZoomImage, type LightboxItem } from "./Lightbox";
 import { SHOP_LINKS } from "@/lib/shop";
+
+const HERO_BILD: LightboxItem = {
+  src: "/hero.jpg",
+  alt: "Handgefertigte LOEFFLER SOUL Sling aus nubukiertem Rindleder, am Körper getragen",
+  caption: "Die Sling · Standard",
+  width: 1200,
+  height: 1600,
+};
 
 export default function Hero() {
   return (
@@ -72,37 +81,26 @@ export default function Hero() {
           </Reveal>
         </div>
 
-        {/* Hauptvisual */}
+        {/* Hauptvisual – antippen öffnet die Großansicht */}
         <Reveal delay={200} className="order-1 lg:order-2">
-          {/* Bild + Plakette führen in die Kollektion im Shop */}
-          <a
-            href={SHOP_LINKS.heroBild}
-            aria-label="Die Sling im Shop ansehen"
-            className="group block"
-          >
-            {/* Tablet hochkant: Querformat-Ausschnitt, damit Überschrift
-                und Shop-Button ohne Scrollen sichtbar bleiben */}
-            <figure className="relative aspect-[3/4] w-full overflow-hidden bg-sand sm:aspect-[4/3] lg:aspect-[3/4]">
+          {/* Tablet hochkant: Querformat-Ausschnitt, damit Überschrift
+              und Shop-Button ohne Scrollen sichtbar bleiben */}
+          <figure className="relative aspect-[3/4] w-full overflow-hidden bg-sand sm:aspect-[4/3] lg:aspect-[3/4]">
+            <ZoomImage items={[HERO_BILD]} label="Titelbild vergrößern: Die Sling Standard">
               {/* HERO-BILD: /public/hero.jpg (Hochformat 3:4, Motiv mittig) */}
               <Image
-                src="/hero.jpg"
-                alt="Handgefertigte LOEFFLER SOUL Sling aus nubukiertem Rindleder, am Körper getragen"
+                src={HERO_BILD.src}
+                alt={HERO_BILD.alt}
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 className="img-zoom object-cover"
               />
-              <figcaption className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-cream/85 px-4 py-1.5 text-[0.62rem] uppercase tracking-eyebrow text-ink backdrop-blur-sm transition-colors duration-300 group-hover:bg-ink group-hover:text-cream">
-                Die Sling · Standard
-                <span
-                  aria-hidden="true"
-                  className="transition-transform duration-300 ease-soft group-hover:translate-x-0.5"
-                >
-                  →
-                </span>
-              </figcaption>
-            </figure>
-          </a>
+            </ZoomImage>
+            <figcaption className="pointer-events-none absolute bottom-4 left-4 rounded-full bg-cream/85 px-4 py-1.5 text-[0.62rem] uppercase tracking-eyebrow text-ink backdrop-blur-[4px]">
+              Die Sling · Standard
+            </figcaption>
+          </figure>
         </Reveal>
       </div>
     </section>

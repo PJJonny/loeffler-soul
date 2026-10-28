@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Reveal from "./Reveal";
+import InstagramIcon from "./InstagramIcon";
+import { ZoomImage, type LightboxItem } from "./Lightbox";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/shop";
 
 /*
@@ -15,23 +17,32 @@ import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/shop";
   und im Bereich „Die Kollektion“ ergänzen.
 */
 
-const ENTWUERFE = [
+const ENTWUERFE: (LightboxItem & { name: string; text: string })[] = [
   {
     name: "FALTE 01",
     text: "Henkeltasche mit diagonaler Falte",
-    bild: "/entwurf-falte01.jpg",
+    caption: "FALTE 01 · Henkeltasche mit diagonaler Falte (Entwurf)",
+    src: "/entwurf-falte01.jpg",
+    width: 900,
+    height: 900,
     alt: "Entwurfszeichnung FALTE 01: Henkeltasche mit diagonaler Falte",
   },
   {
     name: "UFER 02",
     text: "Schultertasche mit geschwungenem Vorderfach",
-    bild: "/entwurf-ufer02.jpg",
+    caption: "UFER 02 · Schultertasche mit geschwungenem Vorderfach (Entwurf)",
+    src: "/entwurf-ufer02.jpg",
+    width: 900,
+    height: 900,
     alt: "Entwurfsvisualisierung UFER 02: Schultertasche aus braunem Nubuk mit geschwungenem Vorderfach",
   },
   {
     name: "GONDEL 02",
     text: "Sichelförmige Schultertasche",
-    bild: "/entwurf-gondel02.jpg",
+    caption: "GONDEL 02 · Sichelförmige Schultertasche (Entwurf)",
+    src: "/entwurf-gondel02.jpg",
+    width: 900,
+    height: 900,
     alt: "Entwurfsvisualisierung GONDEL 02: sichelförmige Schultertasche in Taupe, an einem Haken hängend",
   },
 ];
@@ -70,18 +81,20 @@ export default function Innovation() {
           className="lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center"
         >
           <ul className="grid grid-cols-3 gap-3 sm:gap-5">
-            {ENTWUERFE.map((e) => (
+            {ENTWUERFE.map((e, i) => (
               <li key={e.name}>
                 <figure>
                   <div className="relative aspect-square overflow-hidden bg-cream">
-                    <Image
-                      src={e.bild}
-                      alt={e.alt}
-                      fill
-                      sizes="(max-width: 640px) 33vw, (max-width: 1024px) 30vw, 240px"
-                      className="object-cover"
-                    />
-                    <span className="absolute left-2 top-2 rounded-full bg-paper/90 px-2 py-0.5 text-[0.62rem] text-ink">
+                    <ZoomImage items={ENTWUERFE} index={i} small>
+                      <Image
+                        src={e.src}
+                        alt={e.alt}
+                        fill
+                        sizes="(max-width: 640px) 33vw, (max-width: 1024px) 30vw, 240px"
+                        className="img-zoom object-cover"
+                      />
+                    </ZoomImage>
+                    <span className="pointer-events-none absolute left-2 top-2 rounded-full bg-paper/90 px-2 py-0.5 text-[0.62rem] text-ink">
                       Entwurf
                     </span>
                   </div>
@@ -114,9 +127,10 @@ export default function Innovation() {
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-underline text-sm text-ink/80"
+              className="link-group inline-flex items-center gap-2 text-sm text-ink/80 transition-colors duration-300 hover:text-ink"
             >
-              {INSTAGRAM_HANDLE} folgen
+              <InstagramIcon className="h-[1.1rem] w-[1.1rem]" />
+              <span className="link-underline">{INSTAGRAM_HANDLE} folgen</span>
             </a>
           </div>
         </Reveal>

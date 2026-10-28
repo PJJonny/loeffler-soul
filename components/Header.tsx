@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
-import { SHOP_LINKS } from "@/lib/shop";
+import InstagramIcon from "./InstagramIcon";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, SHOP_LINKS } from "@/lib/shop";
 
 const NAV = [
   { label: "Kollektion", href: "/#kollektion" },
@@ -65,7 +66,21 @@ export default function Header() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2.5 sm:gap-4">
+          {/* Instagram – auf jeder Bildschirmgröße sichtbar */}
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`LOEFFLER SOUL auf Instagram (${INSTAGRAM_HANDLE})`}
+            title={`Instagram ${INSTAGRAM_HANDLE}`}
+            className={`h-9 w-9 items-center justify-center rounded-full text-ink/80 transition-colors duration-300 hover:bg-ink/5 hover:text-ink sm:h-10 sm:w-10 ${
+              open ? "invisible" : "inline-flex"
+            }`}
+          >
+            <InstagramIcon className="h-[1.2rem] w-[1.2rem] sm:h-[1.3rem] sm:w-[1.3rem]" />
+          </a>
+
           {/* Oben dezent umrandet (der Hero-Button trägt das Gewicht),
               nach dem Scrollen dunkel – dann ist er der Weg in den Shop.
               Auch am Handy sichtbar; bei offenem Menü übernimmt der Button im Menü. */}
@@ -129,13 +144,23 @@ export default function Header() {
               </a>
             </li>
           ))}
-          <li className="py-5">
+          <li className="flex flex-wrap items-center gap-x-7 gap-y-4 py-5">
             <a
               href={SHOP_LINKS.menueButton}
               onClick={() => setOpen(false)}
               className="inline-block bg-ink px-6 py-3 text-[0.72rem] uppercase tracking-eyebrow text-cream"
             >
               Zum Shop
+            </a>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="inline-flex items-center gap-2.5 text-[0.95rem] text-ink"
+            >
+              <InstagramIcon className="h-5 w-5" />
+              {INSTAGRAM_HANDLE}
             </a>
           </li>
         </ul>

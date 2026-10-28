@@ -10,6 +10,7 @@ import Story from "@/components/Story";
 import Innovation from "@/components/Innovation";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { LightboxProvider } from "@/components/Lightbox";
 import { OPEN_GRAPH } from "@/lib/site";
 
 // Startseite: eindeutige Hauptadresse für Google (Canonical) und Link-Vorschau
@@ -23,15 +24,18 @@ export default function Home() {
     <>
       <Header />
       <main id="hauptinhalt">
-        <Hero />
-        <Collection />
-        <Worn />
-        <Manifest />
-        <Craft />
-        <Materials />
-        <Story />
-        <Innovation />
-        <Contact />
+        {/* Großansicht für alle Fotos (components/Lightbox.tsx) */}
+        <LightboxProvider>
+          <Hero />
+          <Collection />
+          <Worn />
+          <Manifest />
+          <Craft />
+          <Materials />
+          <Story />
+          <Innovation />
+          <Contact />
+        </LightboxProvider>
       </main>
       <Footer />
     </>
